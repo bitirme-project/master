@@ -1,0 +1,23 @@
+<div class="sidenav">
+    <div class="login-main-text">
+       <h2>Hasta İzleme Sistemi<br> Giriş sayfası</h2>
+       <p>Siteye erişebilmek için giriş yapınız.</p>
+    </div>
+ </div>
+ <div class="main">
+    <div class="col-md-6 col-sm-12">
+       <div class="login-form">
+          <form >
+             <div class="form-group">
+                <label>Kullanıcı Adı</label>
+                <input type="text" class="form-control" name="username"  placeholder="Kullanıcı Adı" #username>
+             </div>
+             <div class="form-group">
+                <label>Parola</label>
+                <input type="password" class="form-control" name="password"  placeholder="Parola" #password>
+             </div>
+             <button (click)="checkLogin(username.value,password.value)" type="submit" class="btn btn-black">Giriş Yap</button>
+          </form>
+       </div>
+    </div>
+ </div>
