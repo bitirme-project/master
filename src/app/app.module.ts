@@ -11,6 +11,9 @@ import { LoginComponent } from './login/login.component';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { FooterComponent } from './footer/footer.component';
+import { PatientUpdateComponent } from './patient-update/patient-update.component';
+import { SessionsAddComponent } from './sessions-add/sessions-add.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
     PatientAddComponent,
     PatientListComponent,
     NavbarComponent,
-    LoginComponent
+    LoginComponent,
+    FooterComponent,
+    PatientUpdateComponent,
+    SessionsAddComponent
   ],
   imports: [
     BrowserModule,
