@@ -11,32 +11,72 @@ export class PatientAddComponent implements OnInit {
   itemList = [];
   selectedItems = [];
   settings = {};
+  itemList1 = [];
+  selectedItems1 = [];
+  settings1 = {};
+  itemList2 = [];
+  selectedItems2 = [];
+  settings2 = {};
   count = 6;
   constructor(private ApiService:ApiService) {
 
   }
-  patient : any = { firstName:"",lastName:"",tc:"" , size:"" , weight:"" , job:"" , birthdate:"" , age:"" , gender:"" , phone:"" , mail:"" , address:"" }
+  patient : any = { firstName:"",lastName:"",tc:"" , size:"" , weight:"" , job:"" , birthdate:"" , age:"" , gender:"" , phone:"" , mail:"" , address:"",sikayet:"",file:"" }
   ngOnInit() {
-
+    //ilaçlar
     this.itemList = [
-      { "id": 1, "itemName": "India", "name": "IN" },
-      { "id": 2, "itemName": "Singapore", "name": "SN" },
-      { "id": 3, "itemName": "Australia", "name": "AU" },
-      { "id": 4, "itemName": "Canada", "name": "CA" },
-      { "id": 5, "itemName": "South Korea", "name": "SK" },
-      { "id": 6, "itemName": "Brazil", "name": "BR" }
+      { "id": 1, "itemName": "İlaç1", "name": "IL1" },
+      { "id": 2, "itemName": "İlaç2", "name": "IL2'" },
+      { "id": 3, "itemName": "İlaç3", "name": "IL3" },
+      { "id": 4, "itemName": "İlaç4", "name": "IL4" }
     ];
 
     this.selectedItems = [
-      { "id": 1, "itemName": "India", "name": "IN" },
-      { "id": 2, "itemName": "Singapore", "name": "SN" },
-      { "id": 3, "itemName": "Australia", "name": "AU" },
-      { "id": 4, "itemName": "Canada", "name": "CA" }];
+      { "id": 1, "itemName": "İlaç1", "name": "IL1" },
+      { "id": 2, "itemName": "İlaç2", "name": "IL2" }];
     this.settings = {
       singleSelection: false,
-      text: "Select Countries",
-      selectAllText: 'Select All',
-      unSelectAllText: 'UnSelect All',
+      text: "Kullandığı İlaçları Seçiniz",
+      selectAllText: 'Hepsini Seçiniz',
+      unSelectAllText: 'Seçimleri Temizle',
+      enableSearchFilter: true,
+      addNewItemOnFilter: true
+    };
+    ///Alerjiler
+    this.itemList1 = [
+      { "id": 1, "itemName": "Alerji1", "name": "AL1" },
+      { "id": 2, "itemName": "Alerji2", "name": "AL2" },
+      { "id": 3, "itemName": "Alerji3", "name": "AU" },
+      { "id": 4, "itemName": "Alerji4", "name": "CA" }
+    ];
+
+    this.selectedItems1 = [
+      { "id": 1, "itemName": "Alerji1", "name": "AL1" },
+      { "id": 2, "itemName": "Alerji2", "name": "AL2" }];
+    this.settings1 = {
+      singleSelection: false,
+      text: "Alerjileri Seçiniz",
+      selectAllText: 'Hepsini Seçiniz',
+      unSelectAllText: 'Seçimleri Temizle',
+      enableSearchFilter: true,
+      addNewItemOnFilter: true
+    };
+    //Geçmiş Hastalıklar
+    this.itemList2 = [
+      { "id": 1, "itemName": "Hastalık1", "name": "HS1" },
+      { "id": 2, "itemName": "Hastalık2", "name": "HS2" },
+      { "id": 3, "itemName": "Hastalık3", "name": "HS3" },
+      { "id": 4, "itemName": "Hastalık4", "name": "HS4" }
+    ];
+
+    this.selectedItems2 = [
+      { "id": 1, "itemName": "Hastalık1", "name": "HS1" },
+      { "id": 2, "itemName": "Hastalık2", "name": "HS2" }];
+    this.settings2 = {
+      singleSelection: false,
+      text: "Geçirmiş Olduğu Hastalıkları Giriniz",
+      selectAllText: 'Hepsini Seçiniz',
+      unSelectAllText: 'Seçimleri Temizle',
       enableSearchFilter: true,
       addNewItemOnFilter: true
     };
