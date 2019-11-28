@@ -1,1 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
+
+.custom-class-example {
+    color: #ccc;
+}
+
+.custom-class-example .c-token {
+    background: #38d574 !important;
+}
+
+.custom-class-example .pure-checkbox label::before {
+    border-color: #38d574 !important;
+}
+
+.custom-class-example .pure-checkbox input[type="checkbox"]:checked+label[_ngcontent-c1]:before {
+    background: #38d574 !important;
+}
+
+.c-token {
+    background: #f2c838 !important;
+}
+
+.c-remove {
+    top: 45% !important;
+}
+
+.c-angle-down {
+    top: 45% !important;
+}
+
+.c-angle-up {
+    top: 45% !important;
+}
+
+.c-btn{
+    line-height: 0px;
+}

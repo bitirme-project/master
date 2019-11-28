@@ -1,2 +1,59 @@
 <app-navbar></app-navbar>
-<p>patient-add works!</p>
+<div class="abc">
+    <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems" [settings]="settings"
+        (onSelect)="onItemSelect($event)" (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
+        (onDeSelectAll)="onDeSelectAll($event)" (onAddFilterNewItem)="onAddItem($event)">
+    </angular2-multiselect>
+</div>
+<form class="form-1">
+    <div class="form-group">
+        <label for="firstName">First Name</label>
+        <input type="text" name="firstname" class="form-control" placeholder="Enter First Name" [(ngModel)]="patient.firstName">
+    </div>
+    <div class="form-group">
+        <label for="lastName">Last Name</label>
+        <input type="text" name="lastname" class="form-control" placeholder="Enter Last Name" [(ngModel)]="patient.lastName">
+    </div>
+    <div class="tc">
+        <label for="exampleInputEmail1">T.C</label>
+        <input type="text" name="tc" class="form-control" placeholder="Enter T.C" [(ngModel)]="patient.tc">
+    </div>
+    <div class="form-group">
+        <label for="size">Size</label>
+        <input type="text" name="size" class="form-control" placeholder="Enter Size" [(ngModel)]="patient.size">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">Weight</label>
+        <input type="text" name="weight" class="form-control" placeholder="Enter Weight" [(ngModel)]="patient.weight">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">job</label>
+        <input type="text" name="job" class="form-control" placeholder="Enter job" [(ngModel)]="patient.job">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">birthdate</label>
+        <input type="text" name="birthdate" class="form-control" placeholder="Enter birthdate" [(ngModel)]="patient.birthdate">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">age</label>
+        <input type="text" name="age" class="form-control" placeholder="Enter age" [(ngModel)]="patient.age">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">gender</label>
+        <input type="text" name="gender" class="form-control" placeholder="Enter gender" [(ngModel)]="patient.gender">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">phone</label>
+        <input type="text" name="phone" class="form-control" placeholder="Enter phone" [(ngModel)]="patient.phone">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">mail</label>
+        <input type="text" name="mail" class="form-control" placeholder="Enter mail" [(ngModel)]="patient.mail">
+    </div>
+    <div class="form-group">
+        <label for="exampleInputEmail1">address</label>
+        <input type="text" name="address" class="form-control" placeholder="Enter address" [(ngModel)]="patient.address">
+    </div>
+    <button class="btn btn-primary" (click)="add()" >ADD</button>
+
+</form>
