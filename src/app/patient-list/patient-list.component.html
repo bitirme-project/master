@@ -1,2 +1,62 @@
+
 <app-navbar></app-navbar>
-<p>patient-list works!</p>
+<div class="container">
+    <div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" width="5%" style="font-size: small">Ad</th>
+                    <th scope="col" width="5%" style="font-size: small">Soyad</th>
+                    <th scope="col" width="15%" width="5%" style="font-size: small">TC</th>
+                    <th scope="col" width="5%" style="font-size: small">İş</th>
+                    <th scope="col" width="10%" style="font-size: small">Doğum Tarihi</th>
+                    <th scope="col" width="5%" style="font-size: small">Yaş</th>
+                    <th scope="col" width="5%" style="font-size: small">Cinsiyet</th>
+                    <th scope="col" width="10%" style="font-size: small">Telefon</th>
+                    <th scope="col" width="10%" style="font-size: small">Mail</th>
+                    <th scope="col" width="15%" style="font-size: small">Adres</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of patients">
+                    <td>
+                        {{item.firstName}}
+                    </td>
+                    <td>
+                        {{item.lastName}}
+                    </td>
+                    <td>
+                        {{item.tc}}
+                    </td>
+                    <td>
+                        {{item.size}}
+                    </td>
+                    <td>
+                        {{item.weight}}
+                    </td>
+                    <td>
+                        {{item.job}}
+                    </td>
+                    <td>
+                        {{item.birthdate}}
+                    </td>
+                    <td>
+                        {{item.age}}
+                    </td>
+                    <td>
+                        {{item.gender}}
+                    </td>
+                    <td>
+                        {{item.phone}}
+                    </td>
+                    <td>
+                        {{item.email}}
+                    </td>
+                    <td>
+                        {{item.adress}}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

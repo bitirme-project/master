@@ -9,7 +9,13 @@ export class PatientListComponent implements OnInit {
 
   constructor() { }
 
+  patients: any[] = [
+    { firstName: "a", lastName: "a", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "" },
+    { firstName: "b", lastName: "b", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "" }
+
+  ]
   ngOnInit() {
+    
   }
 
 }
