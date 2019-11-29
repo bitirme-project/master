@@ -6,7 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./patient-list.component.css']
 })
 export class PatientListComponent implements OnInit {
-
+  items: any = [{headers:""}];
+  item: any;
   constructor() { }
 
   patients: any[] = [
@@ -15,7 +16,8 @@ export class PatientListComponent implements OnInit {
 
   ]
   ngOnInit() {
-    
+    this.items = [{headers:""}]
   }
-
+  page = 1;
+  pageSize = 10;
 }

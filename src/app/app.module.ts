@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
@@ -32,7 +32,8 @@ import { SessionsAddComponent } from './sessions-add/sessions-add.component';
     AppRoutingModule,
     AngularMultiSelectModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]
