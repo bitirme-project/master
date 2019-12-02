@@ -14,8 +14,8 @@ app.use(bodyParser.urlencoded({
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'mysql',
-  database: 'getat'
+  password: '',
+  database: 'bitirme'
 });
 
 connection.connect((err) => {

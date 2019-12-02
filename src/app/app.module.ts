@@ -16,6 +16,7 @@ import { PatientUpdateComponent } from './patient-update/patient-update.componen
 import { SessionsAddComponent } from './sessions-add/sessions-add.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+
 @NgModule({
   declarations: [
     AppComponent,
