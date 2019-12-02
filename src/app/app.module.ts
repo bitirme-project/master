@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap'
+import { NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MainpageComponent } from './mainpage/mainpage.component';
@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './footer/footer.component';
 import { PatientUpdateComponent } from './patient-update/patient-update.component';
 import { SessionsAddComponent } from './sessions-add/sessions-add.component';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { SessionsAddComponent } from './sessions-add/sessions-add.component';
     NgbPaginationModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }

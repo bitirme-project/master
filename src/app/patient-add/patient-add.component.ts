@@ -23,7 +23,9 @@ export class PatientAddComponent implements OnInit {
   }
   patient : any = { firstName:"",lastName:"",tc:"" , size:"" , weight:"" , job:"" , birthdate:"" , age:"" , gender:"" , phone:"" , mail:"" , address:"",sikayet:"",file:"" }
   ngOnInit() {
-    //ilaçlar
+    this.ApiService.getAllData("patient").subscribe(data => { console.log(data) })
+    this.ApiService.getAllData("treatments").subscribe(data => { console.log(data) })
+
     this.itemList = [
       { "id": 1, "itemName": "İlaç1", "name": "IL1" },
       { "id": 2, "itemName": "İlaç2", "name": "IL2'" },
@@ -102,7 +104,6 @@ export class PatientAddComponent implements OnInit {
   }
 
   add(){
-    //console.log(this.patient)
-    this.ApiService.addData(this.patient,"patient").subscribe()
+    this.ApiService.addData(this.patient,"patient").subscribe(data => console.log(data))
   }
 }

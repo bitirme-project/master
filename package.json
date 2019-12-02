@@ -24,6 +24,8 @@
     "@ng-bootstrap/ng-bootstrap": "^5.1.4",
     "angular-font-awesome": "^3.1.2",
     "angular2-multiselect-dropdown": "^4.6.3",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.10.1",
     "jquery": "^3.4.1",
