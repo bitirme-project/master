@@ -1,3 +1,91 @@
 <app-navbar></app-navbar>
-
-
+<div class="container"*ngFor="let item of patients"  style="border:groove;">
+<div class="row">
+    <div class="col-6">
+            <div class="row">
+                    <h6 class="col-4">Akupunktur</h6>
+                    <div class="col-6">
+                        <div class="form-check-inline" >
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" value="">{{item.Vucut}}
+                                </label>
+                              </div>
+                              <div class="form-check-inline">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" value="">{{item.Kulak}}
+                                </label>
+                              </div>
+                            </div>
+                               
+                </div>
+                
+                <div class="row">
+                        <h6 class="col-4">Ozon Terapi</h6>
+                        <div class="col-6">
+                        <div class="form-check-inline" >
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" value="">{{item.Major}}
+                                </label>
+                              </div>
+                              <div class="form-check-inline">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" value="">{{item.Minor}}
+                                </label>
+                              </div>
+                              <div class="form-check-inline" >
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" value="">{{item.Kasici}}
+                                    </label>
+                                  </div>
+                                  <div class="form-check-inline">
+                                    <label class="form-check-label">
+                                      <input type="checkbox" class="form-check-input" value="">{{item.Rektal}}
+                                    </label>
+                                  </div>
+                                </div>
+                </div>
+                <div class="row">
+                        <h6 class="col-4">Hirudoterapi </h6>
+                        <div class="col-6">
+                        <div class="form-check-inline" >
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" value="">{{item.Hirudoterapi}}
+                                </label>
+                              </div>
+                            </div>      
+                             
+                </div>
+                <div class="row">
+                        <h6 class="col-4">Kupda Tedavisi</h6>
+                        <div class="col-6">
+                        <div class="form-check-inline" >
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" value="">{{item.Kupakuru}}
+                                </label>
+                              </div>
+                              <div class="form-check-inline">
+                                <label class="form-check-label">
+                                  <input type="checkbox" class="form-check-input" value="">{{item.Kupayas}}
+                                </label>
+                              </div>
+                            </div>    
+                </div>
+                
+    </div>
+    <div class="col-6">
+        <h5>Tarih seçiniz</h5>
+        <div class="form-group row">
+                
+                <div class="col-10">
+                  <input class="form-control" type="datetime-local" value="datetime-local" id="example-datetime-local-input">
+                </div>
+              </div>
+              <div class="row">
+                    <div class="col-8"></div>
+                    <button class="btn btn-primary">Ekle</button>
+                </div>
+    </div>
+</div>
+    
+</div>
+<app-footer></app-footer>

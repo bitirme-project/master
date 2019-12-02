@@ -6,10 +6,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sessions-add.component.css']
 })
 export class SessionsAddComponent implements OnInit {
-
+  item: any;
   constructor() { }
+  patients: any[] = [
+    { Vucut:"Vucut", Kulak:"Kulak",Major:"Major",Minor:"Minor",Kasici:"Kasici",Rektal:"Rektal" ,Hirudoterapi:"Hirudoterapi",Kupakuru:"Kuru",Kupayas:"YAS" },
+   
 
+  ]
   ngOnInit() {
+    
   }
 
 }
