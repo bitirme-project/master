@@ -1,20 +1,21 @@
 
 <app-navbar></app-navbar>
+
 <div class="container">
-   
-        <table class="table">
-            <thead>
+        <table id="example" class="table table-striped">
+            <thead class="table-success">
                 <tr>
                     <th scope="col">Ad</th>
                     <th scope="col" >Soyad</th>
+                    <th scope="col">Boy</th>
+                    <th scope="col">Kilo</th>
                     <th scope="col">TC</th>
                     <th scope="col" >İş</th>
-                    <th scope="col" >Doğum Tarihi</th>
                     <th scope="col" >Yaş</th>
                     <th scope="col" >Cinsiyet</th>
                     <th scope="col" >Telefon</th>
-                    <th scope="col" >Mail</th>
-                    <th scope="col" >Adres</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,19 +27,16 @@
                         {{item.lastName}}
                     </td>
                     <td>
-                        {{item.tc}}
-                    </td>
-                    <td>
                         {{item.size}}
                     </td>
                     <td>
                         {{item.weight}}
                     </td>
                     <td>
-                        {{item.job}}
+                        {{item.tc}}
                     </td>
                     <td>
-                        {{item.birthdate}}
+                        {{item.job}}
                     </td>
                     <td>
                         {{item.age}}
@@ -49,12 +47,7 @@
                     <td>
                         {{item.phone}}
                     </td>
-                    <td>
-                        {{item.email}}
-                    </td>
-                    <td>
-                        {{item.adress}}
-                    </td>
+                   
                     <td>
                         <button class="btn btn-primary" routerLink="/patientupdate">Düzenle</button>
                     </td>
@@ -64,7 +57,7 @@
                 </tr>
             </tbody>
         </table>
-        
+
 <div class="data-table row">
         <div class="page">
             <ngb-pagination id="pagination" [(page)]="page" [pageSize]="pageSize" [collectionSize]="items.length">
@@ -81,5 +74,6 @@
             </select>
         </div>
     </div>
-</div> <br>
+</div>
+
 <app-footer></app-footer>

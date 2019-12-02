@@ -7,6 +7,8 @@ import { ApiService } from 'src/environments/api.service';
   styleUrls: ['./patient-list.component.css']
 })
 export class PatientListComponent implements OnInit {
+  clients: any[];
+  dataTable:any[];
   items: any = [{headers:""}];
   item: any;
   constructor(private ApiService:ApiService) { }
@@ -17,6 +19,7 @@ export class PatientListComponent implements OnInit {
 
   ]
   ngOnInit() {
+
     this.items = [{headers:""}]
     this.get()
   }
@@ -26,4 +29,5 @@ export class PatientListComponent implements OnInit {
   }
   page = 1;
   pageSize = 10;
+  
 }
