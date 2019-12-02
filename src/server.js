@@ -84,6 +84,7 @@ app.get('/diseases', function (request, response) {
     }
   });
 });
+
 app.post('/patient', function (request, response) {
   let diveinf = request.body
   firstName = request.body.firstName
@@ -100,10 +101,58 @@ app.post('/patient', function (request, response) {
   var value = [
     [firstName,lastName,tc,weight,job,birthdate,age,gender,phone,mail,address]
   ]
-  var sql = "INSERT INTO divetable (firstName,lastName,tc,weight,job,birthdate,age,gender,phone,mail,address) VALUES ?"
+  var sql = "INSERT INTO patient (firstName,lastName,tc,weight,job,birthdate,age,gender,phone,mail,address) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
     if (!error) {
       response.send("Added new patient");
+    } else {
+      console.log(error);
+    }
+  });
+});
+
+app.post('/allergy', function (request, response) {
+  let diveinf = request.body
+  name = request.body.name
+  var value = [
+    [name]
+  ]
+  var sql = "INSERT INTO allergy (name) VALUES ?"
+  connection.query(sql, [value], (error, fields) => {
+    if (!error) {
+      response.send("Added new allergy");
+    } else {
+      console.log(error);
+    }
+  });
+});
+
+app.post('/medicines', function (request, response) {
+  let diveinf = request.body
+  name = request.body.name
+  var value = [
+    [name]
+  ]
+  var sql = "INSERT INTO Medicines (name) VALUES ?"
+  connection.query(sql, [value], (error, fields) => {
+    if (!error) {
+      response.send("Added new medicines");
+    } else {
+      console.log(error);
+    }
+  });
+});
+
+app.post('/diseases', function (request, response) {
+  let diveinf = request.body
+  name = request.body.name
+  var value = [
+    [name]
+  ]
+  var sql = "INSERT INTO diseases (name) VALUES ?"
+  connection.query(sql, [value], (error, fields) => {
+    if (!error) {
+      response.send("Added new medicines");
     } else {
       console.log(error);
     }
