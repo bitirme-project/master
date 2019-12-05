@@ -66,13 +66,7 @@ export class PatientAddComponent implements OnInit {
     this.ApiService.getAllData("medicines").subscribe(data => { this.itemList = data })
     this.ApiService.getAllData("diseases").subscribe(data => { this.itemList2 = data })
   }
-  onAddItem(data: string) {
-    const obj = { name: data }
-    this.ApiService.addData(obj, "medicines").subscribe(data => {console.log(data) ; this.get() })
-    this.count++;
-    this.itemList.push({ "id": this.count, "itemName": data, "name": data });
-    this.selectedItems.push({ "id": this.count, "itemName": data, "name": data });
-  }
+
   onItemSelect(item: any) {
     console.log(item);
     console.log(this.selectedItems);
@@ -91,9 +85,23 @@ export class PatientAddComponent implements OnInit {
   add() {
     this.ApiService.addData(this.patient, "patient").subscribe(data => { this.response=data ; console.log("response --> " + this.response)})
   }
-
+  onAddItem(data: string) {
+    const obj = { name: data }
+    this.ApiService.addData(obj, "medicines").subscribe(data => {console.log(data) ; this.get() })
+    this.count++;
+    this.itemList.push({ "id": this.count, "itemName": data, "name": data });
+    this.selectedItems.push({ "id": this.count, "itemName": data, "name": data });
+  }
   onAddItem1(data: string) {
     this.count++;
+    const obj = { name: data } 
+    this.ApiService.addData(obj,"allergy").subscribe(data => { console.log(data) ; this.get() })
+    this.itemList.push({ "id": this.count, "itemName": data, "name": data });
+    this.selectedItems.push({ "id": this.count, "itemName": data, "name": data });
+  }
+  onAddItem2(data: string) {
+    const obj = { name: data }
+    this.ApiService.addData(obj,"diseases").subscribe(data => { console.log(data) ; this.get() })
     this.itemList.push({ "id": this.count, "itemName": data, "name": data });
     this.selectedItems.push({ "id": this.count, "itemName": data, "name": data });
   }
