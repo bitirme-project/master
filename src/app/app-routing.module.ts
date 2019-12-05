@@ -13,8 +13,8 @@ const routes: Routes = [
   { path:'mainpage' , component: MainpageComponent},
   { path:'patientadd', component:PatientAddComponent},
   { path:'patientlist', component:PatientListComponent},
-  {path:'patientupdate',component:PatientUpdateComponent},
-  {path:'sessionadd',component:SessionsAddComponent}
+  { path:'patientupdate/:id',component:PatientUpdateComponent},
+  { path:'sessionadd/:id',component:SessionsAddComponent}
 
 ];
 

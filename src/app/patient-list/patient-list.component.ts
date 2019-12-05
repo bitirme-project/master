@@ -16,7 +16,6 @@ export class PatientListComponent implements OnInit {
   patients: any[] = [
     { firstName: "a", lastName: "a", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "" },
     { firstName: "b", lastName: "b", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "" }
-
   ]
   ngOnInit() {
 
@@ -25,7 +24,7 @@ export class PatientListComponent implements OnInit {
   }
 
   get(){
-    this.ApiService.getAllData("patient").subscribe(data => { this.patients = data})
+    this.ApiService.getAllData("patients").subscribe(data => { this.patients = data})
   }
   page = 1;
   pageSize = 10;

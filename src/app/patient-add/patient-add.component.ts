@@ -87,9 +87,9 @@ export class PatientAddComponent implements OnInit {
   onDeSelectAll(items: any) {
     console.log(items);
   }
-
+  response
   add() {
-    this.ApiService.addData(this.patient, "patient").subscribe(data => console.log(data))
+    this.ApiService.addData(this.patient, "patient").subscribe(data => { this.response=data ; console.log("response --> " + this.response)})
   }
 
   onAddItem1(data: string) {
