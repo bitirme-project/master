@@ -35,10 +35,28 @@ export class ApiService {
 
   addData(item: any, url: any): Observable<any> {
     const path = `${this.pathAdress}/${url}`;
-    console.log(path)
+    console.log("Post " + path)
     return this.http.post<any>(path, item, httpOptions)
     .pipe(
       catchError(this.handleError<any>('ADDING DATA'))
+    );
+  }
+
+  updateData(item: any, url: any): Observable<any> {
+    const path = `${this.pathAdress}/${url}/${item.id}`;
+    console.log(path)
+    return this.http.put<any>(path, item, httpOptions)
+    .pipe(
+      catchError(this.handleError<any>('UPDATING DATA'))
+    );
+  }
+
+  deleteData(id: number, url: any): Observable<{}> {
+    const path = `${this.pathAdress}/${url}/${id}`;
+    console.log("Delete " + path)
+    return this.http.delete<any>(path, httpOptions)
+    .pipe(
+      catchError(this.handleError<any>('DELETING DATA'))
     );
 
   }

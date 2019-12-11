@@ -1,0 +1,20 @@
+.forcolor{
+    background-color: #f8f9fa ;
+}
+
+.formargin{
+    height: 30;
+}
+
+.container{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.date{
+    margin-top: 7px !important;
+}
+
+.addbutton{
+    margin-top: 39px;
+}

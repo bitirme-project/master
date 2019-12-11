@@ -21,7 +21,7 @@ export class PatientUpdateComponent implements OnInit {
   settings2 = {};
 
   constructor( private ApiService:ApiService , private route:ActivatedRoute) { }
-  patient: any = { firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", sikayet: "", file: "" }
+  patient: any = {id:"", firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", sikayet: "", file: "" }
 
   ngOnInit() {
     this.get()
@@ -63,6 +63,45 @@ export class PatientUpdateComponent implements OnInit {
   get(){
     const id = +this.route.snapshot.paramMap.get('id');
     this.ApiService.getAllData("patient/"+id).subscribe(data => { this.patient = data ; console.log(data) })
+    this.ApiService.getAllData("allergy").subscribe(data => { 
+      this.itemList1 = data 
+      this.ApiService.getAllData("allergy/"+id).subscribe(data => { this.selectedItems1=data})
+    })
+    this.ApiService.getAllData("medicines").subscribe(data => { 
+      this.itemList = data 
+      this.ApiService.getAllData("medicines/"+id).subscribe(data => { this.selectedItems = data })
+    })
+    this.ApiService.getAllData("disseases").subscribe(data => { 
+      this.itemList2 = data 
+      this.ApiService.getAllData("disseases/"+id).subscribe(data => { this.selectedItems2 = data })
+    })
   }
 
+  update(){
+    const id = +this.route.snapshot.paramMap.get('id');
+    console.log(this.patient)
+    this.ApiService.deleteData(id,"allergy").subscribe()
+    this.ApiService.deleteData(id,"medicines").subscribe()
+    this.ApiService.deleteData(id,"diseases").subscribe()
+    this.ApiService.updateData(this.patient,"patient").subscribe(data => { 
+      this.patient = data ; 
+      console.log(data) 
+    })
+    this.addsmt(id)
+  }
+
+  addsmt(id){
+    this.selectedItems.forEach(element => {
+      const obj = { patientid: id , medicineid:element.id }
+      this.ApiService.addData(obj,"medicinespatient").subscribe(data => { console.log(data) })
+    });
+    this.selectedItems1.forEach(element => {
+      const obj = { patientid: id, allergyid:element.id }
+      this.ApiService.addData(obj,"allergypatient").subscribe(data => { console.log(data) })
+    });
+    this.selectedItems2.forEach(element => {
+      const obj = { patientid: id , diseasesid:element.id }
+      this.ApiService.addData(obj,"diseasespatient").subscribe(data => { console.log(data) })
+    });
+  }
 }

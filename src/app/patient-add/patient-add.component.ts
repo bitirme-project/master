@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/environments/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient-add',
@@ -21,7 +22,7 @@ export class PatientAddComponent implements OnInit {
   settings2 = {};
 
   count = 6;
-  constructor(private ApiService: ApiService) {
+  constructor(private ApiService: ApiService , private router : Router) {
 
   }
   patient: any = { firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", sikayet: "", file: "" }
@@ -64,7 +65,7 @@ export class PatientAddComponent implements OnInit {
   get() {
     this.ApiService.getAllData("allergy").subscribe(data => { this.itemList1 = data })
     this.ApiService.getAllData("medicines").subscribe(data => { this.itemList = data })
-    this.ApiService.getAllData("diseases").subscribe(data => { this.itemList2 = data })
+    this.ApiService.getAllData("disseases").subscribe(data => { this.itemList2 = data })
   }
 
   onItemSelect(item: any) {
@@ -83,26 +84,39 @@ export class PatientAddComponent implements OnInit {
   }
   response
   add() {
-    this.ApiService.addData(this.patient, "patient").subscribe(data => { this.response=data ; console.log("response --> " + this.response)})
+    this.ApiService.addData(this.patient, "patient").subscribe(data => { 
+      this.response=data ; 
+      console.log("response --> " + this.response.id)
+      this.addsmt(data.id)
+      this.router.navigate(['/patientupdate/'+data.id])
+    })
+    
+  }
+
+  addsmt(id){
+    this.selectedItems.forEach(element => {
+      const obj = { patientid: id , medicineid:element.id }
+      this.ApiService.addData(obj,"medicinespatient").subscribe(data => { console.log(data) })
+    });
+    this.selectedItems1.forEach(element => {
+      const obj = { patientid: id, allergyid:element.id }
+      this.ApiService.addData(obj,"allergypatient").subscribe(data => { console.log(data) })
+    });
+    this.selectedItems2.forEach(element => {
+      const obj = { patientid: id , diseasesid:element.id }
+      this.ApiService.addData(obj,"diseasespatient").subscribe(data => { console.log(data) })
+    });
   }
   onAddItem(data: string) {
     const obj = { name: data }
-    this.ApiService.addData(obj, "medicines").subscribe(data => {console.log(data) ; this.get() })
-    this.count++;
-    this.itemList.push({ "id": this.count, "itemName": data, "name": data });
-    this.selectedItems.push({ "id": this.count, "itemName": data, "name": data });
+    this.ApiService.addData(obj, "medicines").subscribe(data => {  ; console.log(data) ; this.selectedItems.push(data)  ; this.get() })
   }
   onAddItem1(data: string) {
-    this.count++;
     const obj = { name: data } 
-    this.ApiService.addData(obj,"allergy").subscribe(data => { console.log(data) ; this.get() })
-    this.itemList.push({ "id": this.count, "itemName": data, "name": data });
-    this.selectedItems.push({ "id": this.count, "itemName": data, "name": data });
+    this.ApiService.addData(obj,"allergy").subscribe(data => { console.log(data) ; this.selectedItems1.push(data) ;this.get() })
   }
   onAddItem2(data: string) {
     const obj = { name: data }
-    this.ApiService.addData(obj,"diseases").subscribe(data => { console.log(data) ; this.get() })
-    this.itemList.push({ "id": this.count, "itemName": data, "name": data });
-    this.selectedItems.push({ "id": this.count, "itemName": data, "name": data });
+    this.ApiService.addData(obj,"diseases").subscribe(data => { console.log(data) ; this.selectedItems2.push(data)  ;this.get() })
   }
 }
