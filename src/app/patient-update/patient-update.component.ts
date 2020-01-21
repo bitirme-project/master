@@ -21,7 +21,7 @@ export class PatientUpdateComponent implements OnInit {
   settings2 = {};
 
   constructor( private ApiService:ApiService , private route:ActivatedRoute) { }
-  patient: any = {id:"", firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", sikayet: "", file: "" }
+  patient: any = {id:"", firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", Complaint: "", file: "" }
 
   ngOnInit() {
     this.get()

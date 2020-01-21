@@ -25,7 +25,7 @@ export class PatientAddComponent implements OnInit {
   constructor(private ApiService: ApiService , private router : Router) {
 
   }
-  patient: any = { firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", sikayet: "", file: "" }
+  patient: any = { firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", Complaint: "", file: "" }
   ngOnInit() {
     this.get()
 
@@ -83,14 +83,17 @@ export class PatientAddComponent implements OnInit {
     console.log(items);
   }
   response
-  add() {
+  add() { //                                                               , size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", Complaint: "", file: "" }
+    if(this.patient.firstName!="" && this.patient.lastName!="" && this.patient.tc!="" &&this.patient.size!="" &&this.patient.weight!="" &&this.patient.job!="" &&this.patient.birthdate!="" &&this.patient.age!="" &&this.patient.gender!="" &&this.patient.phone!="" &&this.patient.mail!="" &&this.patient.address!="" &&this.patient.Complaint!=""   )
+    {
     this.ApiService.addData(this.patient, "patient").subscribe(data => { 
       this.response=data ; 
       console.log("response --> " + this.response.id)
       this.addsmt(data.id)
-      this.router.navigate(['/patientupdate/'+data.id])
+      this.router.navigate(['/patientlist/'])
     })
-    
+  }
+
   }
 
   addsmt(id){

@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'mysql',
+  password: '',
   database: 'getat'
 });
 
@@ -25,7 +25,7 @@ connection.connect((err) => {
     console.log('DB connection Error')
 });
 
-app.get('/patients', function (request, response) {
+app.get('/patient', function (request, response) {
   connection.query('SELECT * FROM patient', (error, rows, fields) => {
     if (!error) {
       response.send(rows);
@@ -201,10 +201,11 @@ app.post('/patient', function (request, response) {
   phone = request.body.phone
   mail = request.body.mail
   address = request.body.address
+  Complaint = request.body.Complaint
   var value = [
-    [firstName, lastName, tc, weight, job, birthdate, age, gender, phone, mail, address]
+    [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint]
   ]
-  var sql = "INSERT INTO patient (firstName,lastName,tc,weight,size,job,birthdate,age,gender,phone,mail,address) VALUES ?"
+  var sql = "INSERT INTO patient (firstName,lastName,tc,weight,size,job,birthdate,age,gender,phone,mail,address,Complaint) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
     if (!error) {
       var insertedto = fields.insertId
@@ -372,16 +373,17 @@ app.put('/patient/:id', (request, response) => {
   phone = request.body.phone
   mail = request.body.mail
   address = request.body.address
+  Complaint=request.body.Complaint
   id = request.params.id;
   var value = [
-    [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address, id]
+    [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint, id]
   ]
   //(firstName,lastName,tc,weight,job,birthdate,age,gender,phone,mail,address,id) VALUES = ?
-  connection.query("UPDATE patient SET firstName=? , lastName=? , tc=? , weight=? ,size=?, job=? , birthdate=? , age=? , gender=? , phone=? , mail=? , address=? WHERE id = ? ",
-   [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address, id]
+  connection.query("UPDATE patient SET firstName=? , lastName=? , tc=? , weight=? ,size=?, job=? , birthdate=? , age=? , gender=? , phone=? , mail=? , address=?,Complaint=? WHERE id = ? ",
+   [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint, id]
     , (error, rows, fields) => {
       if (!error) {
-        var obj = {id:id,firstName:firstName,lastName:lastName,tc:tc,weight:weight,size:size,job:job,birthdate:birthdate,age:age,gender:gender,phone:phone,mail:mail,address:address}
+        var obj = {id:id,firstName:firstName,lastName:lastName,tc:tc,weight:weight,size:size,job:job,birthdate:birthdate,age:age,gender:gender,phone:phone,mail:mail,address:address,Complaint:Complaint}
         console.log(obj)
         response.send(JSON.stringify(obj));
       } else {

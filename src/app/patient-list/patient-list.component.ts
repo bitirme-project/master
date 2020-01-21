@@ -20,11 +20,11 @@ export class PatientListComponent implements OnInit {
   ngOnInit() {
 
     this.items = [{headers:""}]
-    this.get()
+    this.get() 
   }
 
   get(){
-    this.ApiService.getAllData("patients").subscribe(data => { this.patients = data})
+    this.ApiService.getAllData("patient").subscribe(data => { this.patients = data})
   }
   page = 1;
   pageSize = 10;

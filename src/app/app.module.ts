@@ -17,6 +17,7 @@ import { SessionsAddComponent } from './sessions-add/sessions-add.component';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule, NgbInputDatepicker} from '@ng-bootstrap/ng-bootstrap'
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
 
@@ -41,6 +42,7 @@ import { NgbPaginationModule, NgbAlertModule, NgbInputDatepicker} from '@ng-boot
     HttpClientModule,
     NgbPaginationModule,
     NgbModule,
+    SweetAlert2Module.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],

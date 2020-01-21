@@ -21,7 +21,7 @@ defaultConfigurations: any;
   constructor() { 
     this.eventData = [
       {
-         title: 'event1',
+         title: 'samet  ',
          start: moment()
       },
       {

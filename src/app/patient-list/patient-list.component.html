@@ -59,21 +59,24 @@
         </table>
 
 <div class="data-table row">
-        <div class="page">
-            <ngb-pagination id="pagination" [(page)]="page" [pageSize]="pageSize" [collectionSize]="items.length">
-            </ngb-pagination> 
-        </div>
-    
-        <div class="page">
-    
-    
-            <select class="custom-select paging" [(ngModel)]="pageSize">
-                <option selected>10</option>
-                <option>20</option>
-                <option>50</option>
-            </select>
-        </div>
+       
+    <div class="page">
+        <ngb-pagination id="pagination" [(page)]="page" [pageSize]="pageSize" [collectionSize]="items.length">
+            
+        </ngb-pagination> 
+       
     </div>
+    
+    <div class="page">
+    
+    
+        <select class="custom-select paging" [(ngModel)]="pageSize">
+            <option selected>10</option>
+            <option>20</option>
+            <option>50</option>
+        </select>
+    </div>
+    </div> 
 </div>
 
 <app-footer></app-footer>
