@@ -18,6 +18,7 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule, NgbInputDatepicker} from '@ng-bootstrap/ng-bootstrap'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { FilterPipe } from 'src/environments/filter.pipe';
 
 
 
@@ -32,7 +33,8 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     LoginComponent,
     FooterComponent,
     PatientUpdateComponent,
-    SessionsAddComponent
+    SessionsAddComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,

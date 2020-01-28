@@ -23,6 +23,8 @@ export class PatientListComponent implements OnInit {
     this.get() 
   }
 
+  searchText : any = ""
+
   get(){
     this.ApiService.getAllData("patient").subscribe(data => { this.patients = data})
   }
