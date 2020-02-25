@@ -14,6 +14,7 @@
                 <th scope="col">Yaş</th>
                 <th scope="col">Cinsiyet</th>
                 <th scope="col">Telefon</th>
+                <th scope="col">patientid</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
             </tr>
@@ -30,6 +31,7 @@
                 <td>{{item.age}}</td>
                 <td>{{item.gender}}</td>
                 <td>{{item.phone}}</td>
+                <td>{{item.patientid}}</td>
                 <td><button class="btn btn-primary" routerLink="/patientupdate/{{item.id}}">Düzenle</button></td>
                 <td><button class="btn btn-success" routerLink="/sessionadd/{{item.id}}">Seans Ekle</button></td>
             </tr>
@@ -45,6 +47,7 @@
                 <td>{{item.age}}</td>
                 <td>{{item.gender}}</td>
                 <td>{{item.phone}}</td>
+                <td>{{item.patientid}}</td>
                 <td><button class="btn btn-primary" routerLink="/patientupdate/{{item.id}}">Düzenle</button></td>
                 <td><button class="btn btn-success" routerLink="/sessionadd/{{item.id}}">Seans Ekle</button></td>
             </tr>

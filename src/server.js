@@ -202,10 +202,13 @@ app.post('/patient', function (request, response) {
   mail = request.body.mail
   address = request.body.address
   Complaint = request.body.Complaint
+  diagnosis = request.body.diagnosis
+  patientid = request.body.patientid
+
   var value = [
-    [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint]
+    [patientid,firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint,diagnosis]
   ]
-  var sql = "INSERT INTO patient (firstName,lastName,tc,weight,size,job,birthdate,age,gender,phone,mail,address,Complaint) VALUES ?"
+  var sql = "INSERT INTO patient (patientid,firstName,lastName,tc,weight,size,job,birthdate,age,gender,phone,mail,address,Complaint,diagnosis) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
     if (!error) {
       var insertedto = fields.insertId
@@ -374,16 +377,18 @@ app.put('/patient/:id', (request, response) => {
   mail = request.body.mail
   address = request.body.address
   Complaint=request.body.Complaint
+  diagnosis = request.body.diagnosis
+  patientid = request.body.patientid
   id = request.params.id;
   var value = [
-    [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint, id]
+    [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint,diagnosis,patientid, id]
   ]
   //(firstName,lastName,tc,weight,job,birthdate,age,gender,phone,mail,address,id) VALUES = ?
-  connection.query("UPDATE patient SET firstName=? , lastName=? , tc=? , weight=? ,size=?, job=? , birthdate=? , age=? , gender=? , phone=? , mail=? , address=?,Complaint=? WHERE id = ? ",
-   [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint, id]
+  connection.query("UPDATE patient SET firstName=? , lastName=? , tc=? , weight=? ,size=?, job=? , birthdate=? , age=? , gender=? , phone=? , mail=? , address=?,Complaint=?,diagnosis=?,patientid = ? WHERE id = ? ",
+   [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address, Complaint , diagnosis , patientid, id]
     , (error, rows, fields) => {
       if (!error) {
-        var obj = {id:id,firstName:firstName,lastName:lastName,tc:tc,weight:weight,size:size,job:job,birthdate:birthdate,age:age,gender:gender,phone:phone,mail:mail,address:address,Complaint:Complaint}
+        var obj = {id:id,firstName:firstName,lastName:lastName,tc:tc,weight:weight,size:size,job:job,birthdate:birthdate,age:age,gender:gender,phone:phone,mail:mail,address:address,Complaint:Complaint,diagnosis:diagnosis,patientid:patientid,}
         console.log(obj)
         response.send(JSON.stringify(obj));
       } else {

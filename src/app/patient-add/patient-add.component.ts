@@ -22,10 +22,10 @@ export class PatientAddComponent implements OnInit {
   settings2 = {};
 
   count = 6;
-  constructor(private ApiService: ApiService , private router : Router) {
+  constructor(private ApiService: ApiService, private router: Router) {
 
   }
-  patient: any = { firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", Complaint: "", file: "" }
+  patient: any = { firstName: "", lastName: "", tc: "", size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", Complaint: "", file: "", patientid: "", diagnosis: "" }
   ngOnInit() {
     this.get()
 
@@ -82,44 +82,44 @@ export class PatientAddComponent implements OnInit {
   onDeSelectAll(items: any) {
     console.log(items);
   }
-  response
-  add() { //                                                               , size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", Complaint: "", file: "" }
-    if(this.patient.firstName!="" && this.patient.lastName!="" && this.patient.tc!="" &&this.patient.size!="" &&this.patient.weight!="" &&this.patient.job!="" &&this.patient.birthdate!="" &&this.patient.age!="" &&this.patient.gender!="" &&this.patient.phone!="" &&this.patient.mail!="" &&this.patient.address!="" &&this.patient.Complaint!=""   )
-    {
-    this.ApiService.addData(this.patient, "patient").subscribe(data => { 
-      this.response=data ; 
-      console.log("response --> " + this.response.id)
-      this.addsmt(data.id)
-      this.router.navigate(['/patientlist/'])
-    })
-  }
+  response  //this.patient.firstName!="" && this.patient.lastName!="" && this.patient.tc!="" && yedeklendi &&this.patient.phone!="" &&this.patient.mail!=""
+  add() { //, size: "", weight: "", job: "", birthdate: "", age: "", gender: "", phone: "", mail: "", address: "", Complaint: "", file: "" }
+    //if(this.patient.size!="" &&this.patient.weight!="" &&this.patient.job!="" &&this.patient.birthdate!="" &&this.patient.age!="" &&this.patient.gender!=""  &&this.patient.address!="" &&this.patient.Complaint!=""   )
+    //{
+      this.ApiService.addData(this.patient, "patient").subscribe(data => {
+        this.response = data;
+        console.log("response --> " + this.response.id)
+        this.addsmt(data.id)
+        this.router.navigate(['/patientlist/'])
+      })
+    //}
 
   }
 
-  addsmt(id){
+  addsmt(id) {
     this.selectedItems.forEach(element => {
-      const obj = { patientid: id , medicineid:element.id }
-      this.ApiService.addData(obj,"medicinespatient").subscribe(data => { console.log(data) })
+      const obj = { patientid: id, medicineid: element.id }
+      this.ApiService.addData(obj, "medicinespatient").subscribe(data => { console.log(data) })
     });
     this.selectedItems1.forEach(element => {
-      const obj = { patientid: id, allergyid:element.id }
-      this.ApiService.addData(obj,"allergypatient").subscribe(data => { console.log(data) })
+      const obj = { patientid: id, allergyid: element.id }
+      this.ApiService.addData(obj, "allergypatient").subscribe(data => { console.log(data) })
     });
     this.selectedItems2.forEach(element => {
-      const obj = { patientid: id , diseasesid:element.id }
-      this.ApiService.addData(obj,"diseasespatient").subscribe(data => { console.log(data) })
+      const obj = { patientid: id, diseasesid: element.id }
+      this.ApiService.addData(obj, "diseasespatient").subscribe(data => { console.log(data) })
     });
   }
   onAddItem(data: string) {
     const obj = { name: data }
-    this.ApiService.addData(obj, "medicines").subscribe(data => {  ; console.log(data) ; this.selectedItems.push(data)  ; this.get() })
+    this.ApiService.addData(obj, "medicines").subscribe(data => { ; console.log(data); this.selectedItems.push(data); this.get() })
   }
   onAddItem1(data: string) {
-    const obj = { name: data } 
-    this.ApiService.addData(obj,"allergy").subscribe(data => { console.log(data) ; this.selectedItems1.push(data) ;this.get() })
+    const obj = { name: data }
+    this.ApiService.addData(obj, "allergy").subscribe(data => { console.log(data); this.selectedItems1.push(data); this.get() })
   }
   onAddItem2(data: string) {
     const obj = { name: data }
-    this.ApiService.addData(obj,"diseases").subscribe(data => { console.log(data) ; this.selectedItems2.push(data)  ;this.get() })
+    this.ApiService.addData(obj, "diseases").subscribe(data => { console.log(data); this.selectedItems2.push(data); this.get() })
   }
 }

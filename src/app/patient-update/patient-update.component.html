@@ -155,6 +155,30 @@
         </div>
 
         <div class="row">
+                <div class="col-4">
+                        <div class="form-group">
+                                <label for="exampleInputEmail1">Tanı</label>
+                                <input type="email" name="mail" required class="form-control"
+                                        placeholder="Tanı Giriniz" [(ngModel)]="patient.diagnosis">
+                        </div>
+                </div>
+                <div class="col-4">
+                        <div class="form-group">
+                                <label for="exampleInputEmail1">Patient id (Kağıtta yazan id)</label>
+                                <textarea name="patientid" required class="form-control" rows="1"
+                                        placeholder="İd Giriniz" [(ngModel)]="patient.patientid"></textarea>
+                                <br> </div>
+                </div>
+                <div class="col-4">
+                        <div class="form-group">
+                                <label for="exampleInputEmail1">Yaş (Kağıtta yazan yaş)</label>
+                                <textarea name="patientid" required class="form-control" rows="1"
+                                        placeholder="İd Giriniz" [(ngModel)]="patient.age"></textarea>
+                                <br> </div>
+                </div>
+        </div>
+
+        <div class="row">
                 <div class="col-3"></div>
                 <div class="col-3"></div>
                 <div class="col-3"></div>
