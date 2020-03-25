@@ -3,6 +3,8 @@ import { ApiService } from 'src/environments/api.service';
 import { ActivatedRoute } from '@angular/router';
 import { datepickerLocale } from 'fullcalendar';
 import { months } from 'moment';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
 
 @Component({
   selector: 'app-sessions-add',
@@ -11,8 +13,9 @@ import { months } from 'moment';
 })
 
 export class SessionsAddComponent implements OnInit {
+  closeResult = ''; //burası popup
   item: any;
-  constructor(private ApiService: ApiService, private route: ActivatedRoute) { }
+  constructor(private ApiService: ApiService, private route: ActivatedRoute,private modalService: NgbModal) { }
   treatments: any[] = [
     {
       Vucut: { id: 2, name: "Vucut", ischecked: false },
@@ -187,5 +190,22 @@ export class SessionsAddComponent implements OnInit {
       this.get() 
     })
     
+  }
+  Open(content) { //pop up açma 
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+  }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return `with: ${reason}`;
+    }
   }
 }
