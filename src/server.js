@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: '',
+  password: 'mysql',
   database: 'getat'
 });
 
@@ -328,10 +328,11 @@ app.post('/sessions', function (request, response) {
   day = request.body.day
   hour = request.body.hour
   minute = request.body.minute
+  price = request.body.price
   var value = [
-    [patientid,date,year,month,day,hour,minute]
+    [patientid,date,year,month,day,hour,minute,price]
   ]
-  var sql = "INSERT INTO sessions (patientid,date,year,month,day,hour,minute) VALUES ?"
+  var sql = "INSERT INTO sessions (patientid,date,year,month,day,hour,minute,price) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
     var insertedto = fields.insertId
     if (!error) {
@@ -389,6 +390,33 @@ app.put('/patient/:id', (request, response) => {
     , (error, rows, fields) => {
       if (!error) {
         var obj = {id:id,firstName:firstName,lastName:lastName,tc:tc,weight:weight,size:size,job:job,birthdate:birthdate,age:age,gender:gender,phone:phone,mail:mail,address:address,Complaint:Complaint,diagnosis:diagnosis,patientid:patientid,}
+        console.log(obj)
+        response.send(JSON.stringify(obj));
+      } else {
+        console.log(error);
+      }
+    });
+});
+
+app.put('/session/:id', (request, response) => {
+  patientid = request.body.patientid
+  date = request.body.date
+  year = request.body.year
+  month = request.body.month
+  day = request.body.day
+  hour = request.body.hour
+  minute = request.body.minute
+  price = request.body.price
+  id = request.params.id;
+  var value = [
+    [patientid,date,year,month,day,hour,minute,price,id]
+  ]
+  //(firstName,lastName,tc,weight,job,birthdate,age,gender,phone,mail,address,id) VALUES = ?
+  connection.query("UPDATE sessions SET patientid=? , date=? , year=? , month=? ,day=?, hour=? , minute=? , price=? WHERE id = ? ",
+   [patientid, date, year, month,day, hour, minute, price, id]
+    , (error, rows, fields) => {
+      if (!error) {
+        var obj = {id:id,patientid:patientid,date:date,year:year,month:month,day:day,hour:hour,minute:minute,price:price}
         console.log(obj)
         response.send(JSON.stringify(obj));
       } else {

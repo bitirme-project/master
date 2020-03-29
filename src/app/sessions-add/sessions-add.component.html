@@ -7,13 +7,13 @@
         <div class="col-8">
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Vucut.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Vucut.ischecked" (ngModelChange)="onChangeModel($event,1)"
                 value="">{{item.Vucut.name}}
             </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Kulak.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Kulak.ischecked" (ngModelChange)="onChangeModel($event,2)"
                 value="">{{item.Kulak.name}}
             </label>
           </div>
@@ -25,25 +25,25 @@
         <div class="col-8">
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Major.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Major.ischecked" (ngModelChange)="onChangeModel($event,3)"
                 value="">{{item.Major.name}}
             </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Minor.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Minor.ischecked" (ngModelChange)="onChangeModel($event,4)"
                 value="">{{item.Minor.name}}
             </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Kasici.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Kasici.ischecked" (ngModelChange)="onChangeModel($event,5)"
                 value="">{{item.Kasici.name}}
             </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Rektal.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Rektal.ischecked" (ngModelChange)="onChangeModel($event,6)"
                 value="">{{item.Rektal.name}}
             </label>
           </div>
@@ -54,7 +54,7 @@
         <div class="col-8">
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Hirudoterapi.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Hirudoterapi.ischecked" (ngModelChange)="onChangeModel($event,7)"
                 value="">{{item.Hirudoterapi.name}}
             </label>
           </div>
@@ -66,19 +66,18 @@
         <div class="col-8">
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Kupakuru.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Kupakuru.ischecked" (ngModelChange)="onChangeModel($event,8)"
                 value="">{{item.Kupakuru.name}}
             </label>
           </div>
           <div class="form-check-inline">
             <label class="form-check-label">
-              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Kupayas.ischecked"
+              <input type="checkbox" class="form-check-input" [(ngModel)]="item.Kupayas.ischecked" (ngModelChange)="onChangeModel($event,9)"
                 value="">{{item.Kupayas.name}}
             </label>
           </div>
         </div>
       </div>
-
     </div>
     <div class="col-3 date">
       <h5>Tarih seçiniz</h5>
@@ -101,7 +100,7 @@
       </div>
     </div>
     <div class="col-1">
-    <button (click)="add()" class="btn btn-success addbutton" style="margin-top: 10px;">Ekle</button>
+    <button (click)="add()" class="btn btn-success addbutton" style="margin-top: 39px;">Ekle</button>
   </div>
   </div>
 </div>
@@ -207,7 +206,7 @@
         </div>
       </div>
       <div class="col-1">
-        <button (click)="Open(content)" class="btn btn-warning addbutton" >Ücret</button> 
+        <button (click)="Open(content,data)" class="btn btn-warning addbutton" >Ücret</button> 
       </div>
     </div>
   </div>
@@ -229,17 +228,17 @@
       <div class="form-group">
         <label for="dateOfBirth">Seans Ücreti</label>
         <div class="input-group">
-          <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
+          <input type="text" name="price" class="form-control" [(ngModel)]="currentsession.price" aria-label="Amount (to the nearest dollar)">
   <div class="input-group-append">
     <span class="input-group-text">₺</span>
-    <span class="input-group-text">300</span>
+    <span class="input-group-text">{{beforeprice}}</span>
   </div>
         </div>
       </div>
     </form>
   </div>
   <div class="modal-footer">
-    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Kaydet</button>
+    <button type="button" class="btn btn-outline-dark" (click)="savePrice()">Kaydet</button>
   </div>
 </ng-template>
 <app-footer></app-footer>

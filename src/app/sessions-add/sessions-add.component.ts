@@ -55,6 +55,7 @@ export class SessionsAddComponent implements OnInit {
   get() {
     const id = +this.route.snapshot.paramMap.get('id');
     this.ApiService.getAllData("sessions/" + id).subscribe((data : any) => {
+      console.log(data);
       this.sessions = data
       this.sessions.forEach((element: any) => {
         this.date = new Date(element.date)
@@ -113,10 +114,10 @@ export class SessionsAddComponent implements OnInit {
               element.treatments[0].Kupayas.ischecked=true
             }
           });
+          
           //console.log(data)
           //element.details = datas
         })
-        console.log(element)
       });
     })
   }
@@ -124,6 +125,7 @@ export class SessionsAddComponent implements OnInit {
   timetoadd
   datetoadd
   datee : Date = new Date()
+ 
   add(){
     /*
     const date : any = { year: this.datetoadd.year , month:  this.datetoadd.month, day: this.datetoadd.day , hour:this.timetoadd.hour, minute: this.timetoadd.minute}
@@ -138,7 +140,7 @@ export class SessionsAddComponent implements OnInit {
 
     const id = +this.route.snapshot.paramMap.get('id');
     const obj = { patientid: id , date : "2019-12-06T21:00:00.000Z" , year: this.datetoadd.year , month:this.datetoadd.month , 
-      day:this.datetoadd.day, hour:this.timetoadd.hour, minute: this.timetoadd.minute }
+      day:this.datetoadd.day, hour:this.timetoadd.hour, minute: this.timetoadd.minute , price: this.totalprice }
     this.ApiService.addData(obj , "sessions").subscribe(data => { 
       //console.log(data ) ;
       const obj = { sessionid: data.id , treatmentid: null }
@@ -191,8 +193,92 @@ export class SessionsAddComponent implements OnInit {
     })
     
   }
-  Open(content) { //pop up açma 
+
+  totalprice = 0;
+  onChangeModel($event,id){
+    let item = $event
+    console.log($event)
+    if(id==1){
+      const akapunkturvucut = 300
+      if(item == true){
+        this.totalprice += akapunkturvucut
+      }else{
+        this.totalprice -= akapunkturvucut
+      }
+    }else if(id==2){
+      const akapunkturkulak = 300
+      if(item == true){
+        this.totalprice += akapunkturkulak
+      }else{
+        this.totalprice -= akapunkturkulak
+      }
+    }else if(id==3){
+      const ozonmajor = 350;
+      if(item == true){
+        this.totalprice += ozonmajor
+      }else{
+        this.totalprice -= ozonmajor
+      }
+    }else if(id==4){
+      const ozonminor = 150
+      if(item == true){
+        this.totalprice += ozonminor
+      }else{
+        this.totalprice -= ozonminor
+      }
+    }else if(id==5){
+      const ozonkasici = 150;
+      if(item == true){
+        this.totalprice += ozonkasici
+      }else{
+        this.totalprice -= ozonkasici
+      }
+    }else if(id==6){
+      const ozonrektal = 100;
+      if(item == true){
+        this.totalprice += ozonrektal
+      }else{
+        this.totalprice -= ozonrektal
+      }
+    }else if(id==7){
+      const hirudoterapi = 350
+      if(item == true){
+        this.totalprice += hirudoterapi
+      }else{
+        this.totalprice -= hirudoterapi
+      }
+    }else if(id==8){
+      const kupakuru = 50
+      if(item == true){
+        this.totalprice += kupakuru
+      }else{
+        this.totalprice -= kupakuru
+      }
+    }else if(id==9){
+      const kupayas = 50
+      if(item == true){
+        this.totalprice += kupayas
+      }else{
+        this.totalprice -= kupayas
+      }
+    }else if(id==10){
+      const prp = 850
+      if(item == true){
+        this.totalprice += prp
+      }else{
+        this.totalprice -= prp
+      }
+    }
+
+  }
+  beforeprice = 0;
+  currentsession : any = {}
+  Open(content,session) { //pop up açma 
+    console.log(session)
+    this.currentsession=session
+    this.beforeprice = session.price
     this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      
       this.closeResult = `Closed with: ${result}`;
     }, (reason) => {
       this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
@@ -208,4 +294,17 @@ export class SessionsAddComponent implements OnInit {
       return `with: ${reason}`;
     }
   }
+
+  savePrice(){
+    const obj = this.currentsession;
+    delete obj.ddate;
+    delete obj.ttime;
+    delete obj.treatments;
+    console.log(this.currentsession)
+    console.log(obj)
+    this.ApiService.updateData(obj , "session").subscribe(data => { console.log("Updated"); this.get();})
+    this.modalService.dismissAll('Clicked save')
+  }
+
+
 }

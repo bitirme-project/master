@@ -4,7 +4,7 @@
 
         <div class="col-5">
             <h2> Genel Kazanç</h2>
-            <label id="earnings" style="size: 50px;">12000</label> <span>&#8378;</span>
+            <label id="earnings" style="size: 50px;">{{total}}</label> <span>&#8378;</span>
             <div >
                 
                 <canvas id="canvas" ></canvas> 
@@ -14,7 +14,7 @@
         <div class="col-7">
 
         <h2 class="text-center"> Aylık Kazanç</h2> 
-        <div class="container container-table">
+        <div class="container container-table" style="max-height: 600px; overflow-y: overlay;">
             <table id="example" class="table table-striped">
                 <thead class="table-success">
                     <tr>
