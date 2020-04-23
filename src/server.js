@@ -186,6 +186,16 @@ app.delete('/allergy/:id', function (request, response) {
   });
 });
 
+app.get('/callendar', function (request, response) {
+  connection.query('SELECT sessions.id,month,RIGHT(year,2) AS year,day,hour,minute,patient.firstName AS firstname,patient.lastName AS lastname,treatments.name as traetname FROM sessions INNER JOIN patient on patient.id=sessions.patientid INNER JOIN session ON sessions.id = session.sessionid INNER JOIN treatments ON treatments.id = treatmentid', (error, rows, fields) => {
+    if (!error) {
+      response.send(rows);
+    } else {
+      console.log(error);
+    }
+  });
+}); // SELECT month,RIGHT(year,2) AS year,day,hour,minute,patient.firstName AS firstname,patient.lastName AS lastname FROM sessions INNER JOIN patient on patient.id=sessions.patientid
+
 
 
 app.post('/patient', function (request, response) {
@@ -206,7 +216,7 @@ app.post('/patient', function (request, response) {
   patientid = request.body.patientid
 
   var value = [
-    [patientid,firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint,diagnosis]
+    [patientid, firstName, lastName, tc, weight, size, job, birthdate, age, gender, phone, mail, address, Complaint, diagnosis]
   ]
   var sql = "INSERT INTO patient (patientid,firstName,lastName,tc,weight,size,job,birthdate,age,gender,phone,mail,address,Complaint,diagnosis) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
@@ -330,7 +340,7 @@ app.post('/sessions', function (request, response) {
   minute = request.body.minute
   price = request.body.price
   var value = [
-    [patientid,date,year,month,day,hour,minute,price]
+    [patientid, date, year, month, day, hour, minute, price]
   ]
   var sql = "INSERT INTO sessions (patientid,date,year,month,day,hour,minute,price) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
@@ -377,19 +387,19 @@ app.put('/patient/:id', (request, response) => {
   phone = request.body.phone
   mail = request.body.mail
   address = request.body.address
-  Complaint=request.body.Complaint
+  Complaint = request.body.Complaint
   diagnosis = request.body.diagnosis
   patientid = request.body.patientid
   id = request.params.id;
   var value = [
-    [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address,Complaint,diagnosis,patientid, id]
+    [firstName, lastName, tc, weight, size, job, birthdate, age, gender, phone, mail, address, Complaint, diagnosis, patientid, id]
   ]
   //(firstName,lastName,tc,weight,job,birthdate,age,gender,phone,mail,address,id) VALUES = ?
   connection.query("UPDATE patient SET firstName=? , lastName=? , tc=? , weight=? ,size=?, job=? , birthdate=? , age=? , gender=? , phone=? , mail=? , address=?,Complaint=?,diagnosis=?,patientid = ? WHERE id = ? ",
-   [firstName, lastName, tc, weight,size, job, birthdate, age, gender, phone, mail, address, Complaint , diagnosis , patientid, id]
+    [firstName, lastName, tc, weight, size, job, birthdate, age, gender, phone, mail, address, Complaint, diagnosis, patientid, id]
     , (error, rows, fields) => {
       if (!error) {
-        var obj = {id:id,firstName:firstName,lastName:lastName,tc:tc,weight:weight,size:size,job:job,birthdate:birthdate,age:age,gender:gender,phone:phone,mail:mail,address:address,Complaint:Complaint,diagnosis:diagnosis,patientid:patientid,}
+        var obj = { id: id, firstName: firstName, lastName: lastName, tc: tc, weight: weight, size: size, job: job, birthdate: birthdate, age: age, gender: gender, phone: phone, mail: mail, address: address, Complaint: Complaint, diagnosis: diagnosis, patientid: patientid, }
         console.log(obj)
         response.send(JSON.stringify(obj));
       } else {
@@ -409,14 +419,14 @@ app.put('/session/:id', (request, response) => {
   price = request.body.price
   id = request.params.id;
   var value = [
-    [patientid,date,year,month,day,hour,minute,price,id]
+    [patientid, date, year, month, day, hour, minute, price, id]
   ]
   //(firstName,lastName,tc,weight,job,birthdate,age,gender,phone,mail,address,id) VALUES = ?
   connection.query("UPDATE sessions SET patientid=? , date=? , year=? , month=? ,day=?, hour=? , minute=? , price=? WHERE id = ? ",
-   [patientid, date, year, month,day, hour, minute, price, id]
+    [patientid, date, year, month, day, hour, minute, price, id]
     , (error, rows, fields) => {
       if (!error) {
-        var obj = {id:id,patientid:patientid,date:date,year:year,month:month,day:day,hour:hour,minute:minute,price:price}
+        var obj = { id: id, patientid: patientid, date: date, year: year, month: month, day: day, hour: hour, minute: minute, price: price }
         console.log(obj)
         response.send(JSON.stringify(obj));
       } else {
