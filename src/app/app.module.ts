@@ -19,6 +19,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgbPaginationModule, NgbAlertModule, NgbInputDatepicker} from '@ng-bootstrap/ng-bootstrap'
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { FilterPipe } from 'src/environments/filter.pipe';
+import { CashComponent } from './cash/cash.component';
 
 
 
@@ -34,7 +35,8 @@ import { FilterPipe } from 'src/environments/filter.pipe';
     FooterComponent,
     PatientUpdateComponent,
     SessionsAddComponent,
-    FilterPipe
+    FilterPipe,
+    CashComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +46,7 @@ import { FilterPipe } from 'src/environments/filter.pipe';
     HttpClientModule,
     NgbPaginationModule,
     NgbModule,
-    SweetAlert2Module.forRoot(),
+    SweetAlert2Module.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent],
