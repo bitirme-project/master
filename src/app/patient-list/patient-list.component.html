@@ -33,6 +33,7 @@
                 <td>{{item.patientid}}</td>
                 <td><button class="btn btn-primary" routerLink="/patientupdate/{{item.id}}">Düzenle</button></td>
                 <td><button class="btn btn-success" routerLink="/sessionadd/{{item.id}}">Seans Ekle</button></td>
+                <td><button class="btn btn-success" (click)="MachineLearning(item)"> ML </button></td>
             </tr>
         </tbody>
         <tbody *ngIf="searchText == ''">
@@ -49,6 +50,7 @@
                 <td>{{item.patientid}}</td>
                 <td><button class="btn btn-primary" routerLink="/patientupdate/{{item.id}}">Düzenle</button></td>
                 <td><button class="btn btn-success" routerLink="/sessionadd/{{item.id}}">Seans Ekle</button></td>
+                <td><button class="btn btn-success" (click)="MachineLearning(item)"> ML </button></td>
             </tr>
         </tbody>
     </table>
