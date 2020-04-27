@@ -25,6 +25,24 @@ connection.connect((err) => {
     console.log('DB connection Error')
 });
 
+var body = null
+app.get('/getData', function (request, response) {
+  response.send(body)
+});
+
+app.post('/setData', function (request, response) {
+  body = request.body
+  console.log(body);
+});
+
+var Result = null
+app.post('/setResult', function (request, response) {
+  Result = request.body;
+  console.log(Result);
+  body = '';
+  response.send('success')
+});
+
 app.get('/patient', function (request, response) {
   connection.query('SELECT * FROM patient', (error, rows, fields) => {
     if (!error) {
