@@ -47,7 +47,8 @@ export class PatientListComponent implements OnInit {
         obj.hastalik = str1
         obj.ilac = str2
         //Burada post servisi yollanacak.
-        console.log(obj)
+        this.ApiService.addData(obj, "setData").subscribe(data => {obj})
+        //console.log(obj)
       })
     })
   }
