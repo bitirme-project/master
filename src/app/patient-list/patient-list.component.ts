@@ -30,8 +30,11 @@ export class PatientListComponent implements OnInit {
   }
   page = 1;
   pageSize = 10;
-
+  loading = false;
+  MLData: any = { seans_sayisi: 0, tedavi: [] }
   MachineLearning($event) {
+    this.loading = true;
+    this.MLData = { seans_sayisi: 0, tedavi: [] }
     var item = $event
     var str1 = ""
     var str2 = ""
@@ -47,14 +50,36 @@ export class PatientListComponent implements OnInit {
         obj.hastalik = str1
         obj.ilac = str2
         //Burada post servisi yollanacak.
-        this.ApiService.addData(obj, "setData").subscribe(data => {obj})
+        this.ApiService.addData(obj, "setData").subscribe(data => { console.log(data); obj })
         //console.log(obj)
       })
     })
+    setTimeout(() => {
+      this.ApiService.getAllData("getResult").subscribe(data => { this.MLData = data; console.log(data); this.loading=false; })
+    }, 5000)
+  }
+
+  /*
+  {
+    seans_sayisi: '10',
+    tedavi: [
+      'akupunktur vücut',
+      'akupunktur kulak',
+      'kupa tedavisi kuru',
+      'akupunktur vücut',
+      'akupunktur kulak',
+      'akupunktur kulak',
+      'akupunktur vücut',
+      'akupunktur vücut',
+      'akupunktur vücut',
+      'akupunktur vücut'
+    ]
   }
   /*
-  receiving_data = {'boy':177, 'kilo':77, 'yas':55, 'meslek':'text', 'cinsiyet':'erkek',
-                   'sikayet':'text', 'tani':'text',
-                   'hastalik':'cat1,cat2,cat3..', 'ilac':'cat1,cat2,cat3..'}
-  */
+  
+    /*
+    receiving_data = {'boy':177, 'kilo':77, 'yas':55, 'meslek':'text', 'cinsiyet':'erkek',
+                     'sikayet':'text', 'tani':'text',
+                     'hastalik':'cat1,cat2,cat3..', 'ilac':'cat1,cat2,cat3..'}
+    */
 }

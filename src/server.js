@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'mysql',
+  password: '',
   database: 'getat'
 });
 
@@ -31,6 +31,7 @@ app.get('/getData', function (request, response) {
 });
 
 app.post('/setData', function (request, response) {
+  body = null
   body = request.body
   console.log(body);
 });
@@ -41,6 +42,12 @@ app.post('/setResult', function (request, response) {
   console.log(Result);
   body = '';
   response.send('success')
+});
+
+app.get('/getResult', function (request, response) {
+  console.log("Data getlendi")
+  console.log(Result);
+  response.send(Result)
 });
 
 app.get('/patient', function (request, response) {
