@@ -17,6 +17,7 @@
                 <th scope="col">patientid</th>
                 <th scope="col"></th>
                 <th scope="col"></th>
+                <th scope="col"></th>
             </tr>
         </thead>
         <tbody *ngIf="searchText != '' ">
@@ -59,21 +60,18 @@
 <div class="container">
     <div class="data-table row" *ngIf="searchText==''">
 
-        <div class="page">
+        <div class="page paginator">
             <ngb-pagination id="pagination" [(page)]="page" [pageSize]="pageSize" [collectionSize]="patients.length">
-
             </ngb-pagination>
-
         </div>
-
         <div class="page">
-
-
             <select class="custom-select paging" [(ngModel)]="pageSize">
                 <option selected>10</option>
                 <option>20</option>
                 <option>50</option>
             </select>
+            <button class="btn btn-success" (click)="Test()" data-toggle="modal" data-target="#MLModal">
+                Test </button>
         </div>
     </div>
 </div>
@@ -90,15 +88,24 @@
                 <div class="spinner-border text-success" role="status">
                     <span class="sr-only">Loading...</span>
                 </div>
+
                 <div *ngIf="loading">Yükleniyor Lütfen Bekleyin</div>
+
                 Tahminlenen seans sayisi : {{MLData.seans_sayisi}}
-                <div *ngFor="let item of MLData.tedavi ; let index">
-                    <span *ngIf="item!='yok'">{{item}}</span>
+
+                <div class="suggest-container" *ngFor="let item of MLData.tedavi ; let index = index">
+                    <span *ngIf="item!='yok'"><label>{{index+1}}.Seans için tahminimiz</label></span>
+
+                    <select class="custom-select" [(ngModel)]="selected[index]"
+                        (change)="onSelect($event.target.value,index)">
+                        <option *ngFor="let treat of treatments ; let trid" [value]="treat.id">{{treat.name}} - {{ treat.treatment }}</option>
+                    </select>
+
                 </div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                <button type="button" class="btn btn-primary">Kaydet</button>
+                <button type="button" class="btn btn-primary" (click)="add()">Kaydet</button>
             </div>
         </div>
     </div>

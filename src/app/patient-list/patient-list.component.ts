@@ -20,7 +20,8 @@ export class PatientListComponent implements OnInit {
   ngOnInit() {
 
     this.items = [{ headers: "" }]
-    this.get()
+    this.get();
+    this.getTreatments();
   }
 
   searchText: any = ""
@@ -55,8 +56,70 @@ export class PatientListComponent implements OnInit {
       })
     })
     setTimeout(() => {
-      this.ApiService.getAllData("getResult").subscribe(data => { this.MLData = data; console.log(data); this.loading=false; })
+      this.ApiService.getAllData("getResult").subscribe(data => { this.MLData = data; console.log(data); this.loading = false; })
     }, 5000)
+  }
+
+  treatments
+  getTreatments() {
+    this.ApiService.getAllData("treatments").subscribe(data => {
+      this.treatments = data
+      console.log(data)
+    })
+  }
+
+  selected: any = [{id:"", name: "", treat: "" }]
+  Test() {
+    this.MLData = {
+      seans_sayisi: '10',
+      tedavi: [
+        'akupunktur vücut',
+        'akupunktur kulak',
+        'kupa tedavisi kuru',
+        'akupunktur vücut',
+        'akupunktur kulak',
+        'akupunktur kulak',
+        'akupunktur vücut',
+        'akupunktur vücut',
+        'akupunktur vücut',
+        'akupunktur vücut'
+      ]
+    }
+
+    for (let index = 0; index < this.MLData.tedavi.length; index++) {
+      var str: string = this.MLData.tedavi[index]
+      if (str.includes("vücut")) {
+        this.selected[index] = this.treatments[0].id
+      } else if (str.includes("kulak")) {
+        this.selected[index] = this.treatments[1].id
+      } else if (str.includes("kulak")) {
+        this.selected[index] = this.treatments[2].id
+      } else if (str.includes("major")) {
+        this.selected[index] = this.treatments[3].id
+      } else if (str.includes("minor")) {
+        this.selected[index] = this.treatments[4].id
+      } else if (str.includes("kas")) {
+        this.selected[index] = this.treatments[5].id
+      } else if (str.includes("rektal")) {
+        this.selected[index] = this.treatments[6].id
+      } else if (str.includes("hirudoterapi")) {
+        this.selected[index] = this.treatments[7].id
+      } else if (str.includes("kuru")) {
+        this.selected[index] = this.treatments[8].id
+      } else if (str.includes("yas")) {
+        this.selected[index] = this.treatments[9].id
+      }
+    }
+  }
+
+  
+
+  onSelect(obj,index,trid) {
+    this.selected[index] = +obj 
+  }
+
+  add(){
+    console.log(this.selected)
   }
 
   /*

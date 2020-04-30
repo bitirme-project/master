@@ -1,3 +1,20 @@
 .container-table{
     min-height: 500px;
 }
+
+.paginator{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-table{
+    margin-top: 5px;
+}
+
+.table-success{
+    margin-top: 5px;
+}
+
+.suggest-container{
+    margin-top: 10px;
+}
