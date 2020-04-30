@@ -14,7 +14,7 @@ app.use(bodyParser.urlencoded({
 var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
-  password: 'mysql',
+  password: '',
   database: 'getat'
 });
 
@@ -51,7 +51,7 @@ app.get('/getResult', function (request, response) {
 });
 
 app.get('/patient', function (request, response) {
-  connection.query('SELECT * FROM patient', (error, rows, fields) => {
+  connection.query('SELECT * FROM patient ORDER BY id DESC', (error, rows, fields) => {
     if (!error) {
       response.send(rows);
     } else {

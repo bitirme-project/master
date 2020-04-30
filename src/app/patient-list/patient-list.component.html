@@ -70,8 +70,8 @@
                 <option>20</option>
                 <option>50</option>
             </select>
-            <button class="btn btn-success" (click)="Test()" data-toggle="modal" data-target="#MLModal">
-                Test </button>
+            <!--<button class="btn btn-success" (click)="Test()" data-toggle="modal" data-target="#MLModal">
+                Test </button>-->
         </div>
     </div>
 </div>
@@ -90,7 +90,7 @@
                 </div>
 
                 <div *ngIf="loading">Yükleniyor Lütfen Bekleyin</div>
-
+                {{patient.patientid}}
                 Tahminlenen seans sayisi : {{MLData.seans_sayisi}}
 
                 <div class="suggest-container" *ngFor="let item of MLData.tedavi ; let index = index">

@@ -29,6 +29,7 @@ export class PatientListComponent implements OnInit {
   get() {
     this.ApiService.getAllData("patient").subscribe(data => { this.patients = data })
   }
+  patient : any = { firstName:"" , lastName:""}
   page = 1;
   pageSize = 10;
   loading = false;
@@ -37,6 +38,7 @@ export class PatientListComponent implements OnInit {
     this.loading = true;
     this.MLData = { seans_sayisi: 0, tedavi: [] }
     var item = $event
+    this.patient = item
     var str1 = ""
     var str2 = ""
     const obj: any = { boy: item.size, kilo: item.weight, age: item.age, meslek: item.job, cinsiyet: item.gender, sikayet: item.Complaint, tani: item.diagnosis }
@@ -56,8 +58,14 @@ export class PatientListComponent implements OnInit {
       })
     })
     setTimeout(() => {
-      this.ApiService.getAllData("getResult").subscribe(data => { this.MLData = data; console.log(data); this.loading = false; })
-    }, 5000)
+      this.ApiService.getAllData("getResult").subscribe(data => { 
+        this.MLData = data; 
+        this.selected = []
+        for (let index = 0; index < this.MLData.tedavi.length; index++) {
+          this.selected[index] = this.MLData.tedavi[index]
+        }
+        this.loading = false; })
+    }, 2000)
   }
 
   treatments
@@ -73,42 +81,14 @@ export class PatientListComponent implements OnInit {
     this.MLData = {
       seans_sayisi: '10',
       tedavi: [
-        'akupunktur vücut',
-        'akupunktur kulak',
-        'kupa tedavisi kuru',
-        'akupunktur vücut',
-        'akupunktur kulak',
-        'akupunktur kulak',
-        'akupunktur vücut',
-        'akupunktur vücut',
-        'akupunktur vücut',
-        'akupunktur vücut'
+        '2', '3', '2',
+        '3', '2', '3',
+        '2', '3'
       ]
     }
-
+    this.selected = []
     for (let index = 0; index < this.MLData.tedavi.length; index++) {
-      var str: string = this.MLData.tedavi[index]
-      if (str.includes("vücut")) {
-        this.selected[index] = this.treatments[0].id
-      } else if (str.includes("kulak")) {
-        this.selected[index] = this.treatments[1].id
-      } else if (str.includes("kulak")) {
-        this.selected[index] = this.treatments[2].id
-      } else if (str.includes("major")) {
-        this.selected[index] = this.treatments[3].id
-      } else if (str.includes("minor")) {
-        this.selected[index] = this.treatments[4].id
-      } else if (str.includes("kas")) {
-        this.selected[index] = this.treatments[5].id
-      } else if (str.includes("rektal")) {
-        this.selected[index] = this.treatments[6].id
-      } else if (str.includes("hirudoterapi")) {
-        this.selected[index] = this.treatments[7].id
-      } else if (str.includes("kuru")) {
-        this.selected[index] = this.treatments[8].id
-      } else if (str.includes("yas")) {
-        this.selected[index] = this.treatments[9].id
-      }
+      this.selected[index] = this.MLData.tedavi[index]
     }
   }
 
