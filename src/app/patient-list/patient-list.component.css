@@ -18,3 +18,20 @@
 .suggest-container{
     margin-top: 10px;
 }
+
+.modal-content{
+    width: 650px;
+    max-width: none;
+}
+
+.custom-select{
+    height: 40px;
+}
+
+.form-control{
+    height: 40px;
+}
+
+.btn-link{
+    display: none;
+}

@@ -22,8 +22,8 @@
         </thead>
         <tbody *ngIf="searchText != '' ">
             <tr *ngFor="let item of patients | filter : searchText : false">
-                <td>{{item.firstName}} </td>
-                <td> {{item.lastName}}</td>
+                <td>{{item.firstName}}</td>
+                <td>{{item.lastName}}</td>
                 <td>{{item.size}}</td>
                 <td>{{item.weight}}</td>
                 <td>{{item.tc}}</td>
@@ -39,7 +39,7 @@
         </tbody>
         <tbody *ngIf="searchText == ''">
             <tr *ngFor="let item of patients | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
-                <td>{{item.firstName}} </td>
+                <td>{{item.firstName}}</td>
                 <td> {{item.lastName}}</td>
                 <td>{{item.size}}</td>
                 <td>{{item.weight}}</td>
@@ -70,8 +70,8 @@
                 <option>20</option>
                 <option>50</option>
             </select>
-            <!--<button class="btn btn-success" (click)="Test()" data-toggle="modal" data-target="#MLModal">
-                Test </button>-->
+            <button class="btn btn-success" (click)="Test()" data-toggle="modal" data-target="#MLModal">
+                Test </button>
         </div>
     </div>
 </div>
@@ -90,17 +90,49 @@
                 </div>
 
                 <div *ngIf="loading">Yükleniyor Lütfen Bekleyin</div>
-                {{patient.patientid}}
-                Tahminlenen seans sayisi : {{MLData.seans_sayisi}}
-
-                <div class="suggest-container" *ngFor="let item of MLData.tedavi ; let index = index">
-                    <span *ngIf="item!='yok'"><label>{{index+1}}.Seans için tahminimiz</label></span>
-
-                    <select class="custom-select" [(ngModel)]="selected[index]"
-                        (change)="onSelect($event.target.value,index)">
-                        <option *ngFor="let treat of treatments ; let trid" [value]="treat.id">{{treat.name}} - {{ treat.treatment }}</option>
-                    </select>
-
+                <div style="border-bottom: 1px solid lightgray; height: 40px;">
+                    {{patient.patientid}}
+                    Tahminlenen seans sayisi : {{MLData.seans_sayisi}}
+                </div>
+                <div class="suggest-container" *ngFor="let item of MLData.tedavi ; let index = index" style="margin-left: 10px;
+                 margin-right: 10px;">
+                    <div class="row" style="border-bottom: 1px solid lightgray;">
+                        <div>
+                            <span *ngIf="item!='yok'"><label>{{index+1}}.Seans için tahminimiz</label></span>
+                            <br>
+                            <div>
+                                <select class="custom-select" [(ngModel)]="selected[index]"
+                                    (change)="onSelect($event.target.value,index)">
+                                    <option *ngFor="let treat of treatments ; let trid" [value]="treat.id">
+                                        {{treat.name}} -
+                                        {{ treat.treatment }}</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div style="margin-left: 10px;">
+                            <label>Tarih</label>
+                            <div class="form-group row">
+                                <div class="col-12">
+                                    <div class="input-group">
+                                        <input class="form-control calendars" size="15" placeholder="YY-MM-DD" name="dp"
+                                            [(ngModel)]="dates[index]" ngbDatepicker #st="ngbDatepicker">
+                                        <div class="input-group-append">
+                                            <button class="btn btn-secondary calendar" (click)="st.toggle()"
+                                                type="button">
+                                                <i class="far fa-calendar-alt"></i> </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="deneme" style="margin-left: 10px;">
+                            <label>Saat</label>
+                            <br>
+                            <div>
+                                <ngb-timepicker [(ngModel)]="times[index]"></ngb-timepicker>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">

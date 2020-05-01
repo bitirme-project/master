@@ -29,7 +29,7 @@ export class PatientListComponent implements OnInit {
   get() {
     this.ApiService.getAllData("patient").subscribe(data => { this.patients = data })
   }
-  patient : any = { firstName:"" , lastName:""}
+  patient: any = { firstName: "", lastName: "" }
   page = 1;
   pageSize = 10;
   loading = false;
@@ -39,6 +39,7 @@ export class PatientListComponent implements OnInit {
     this.MLData = { seans_sayisi: 0, tedavi: [] }
     var item = $event
     this.patient = item
+    console.log(this.patient)
     var str1 = ""
     var str2 = ""
     const obj: any = { boy: item.size, kilo: item.weight, age: item.age, meslek: item.job, cinsiyet: item.gender, sikayet: item.Complaint, tani: item.diagnosis }
@@ -58,13 +59,29 @@ export class PatientListComponent implements OnInit {
       })
     })
     setTimeout(() => {
-      this.ApiService.getAllData("getResult").subscribe(data => { 
-        this.MLData = data; 
+      this.ApiService.getAllData("getResult").subscribe(data => {
+        this.MLData = data;
         this.selected = []
+        this.dates = []
+        this.times = []
         for (let index = 0; index < this.MLData.tedavi.length; index++) {
           this.selected[index] = this.MLData.tedavi[index]
+          let time: any = {
+            hour: 9,
+            minute: 0,
+            seconds: 0
+          }
+          this.times[index] = time
+    
+          let date = new Date()
+          let today: any = {
+            year: date.getFullYear(),
+            month: date.getMonth(),
+            day: date.getDay()
+          }
         }
-        this.loading = false; })
+        this.loading = false;
+      })
     }, 2000)
   }
 
@@ -75,9 +92,11 @@ export class PatientListComponent implements OnInit {
       console.log(data)
     })
   }
-
-  selected: any = [{id:"", name: "", treat: "" }]
+  dates: any = []
+  times: any = []
+  selected: any = [{ id: "", name: "", treat: "" }]
   Test() {
+
     this.MLData = {
       seans_sayisi: '10',
       tedavi: [
@@ -88,18 +107,39 @@ export class PatientListComponent implements OnInit {
     }
     this.selected = []
     for (let index = 0; index < this.MLData.tedavi.length; index++) {
+      let time: any = {
+        hour: 9,
+        minute: 0,
+        seconds: 0
+      }
+      this.times[index] = time
+
+      let date = new Date()
+      let today: any = {
+        year: date.getFullYear(),
+        month: date.getMonth(),
+        day: date.getDay()
+      }
+
+      this.dates[index] = today
+    }
+    for (let index = 0; index < this.MLData.tedavi.length; index++) {
       this.selected[index] = this.MLData.tedavi[index]
     }
   }
 
-  
 
-  onSelect(obj,index,trid) {
-    this.selected[index] = +obj 
+
+  onSelect(obj, index, trid) {
+    this.selected[index] = +obj
   }
 
-  add(){
-    console.log(this.selected)
+  add() {
+    for (let i = 0; i < this.MLData.tedavi.length; i++) {
+      const obj = { patientid: this.patient.id , date : "2019-12-06T21:00:00.000Z" , year: this.dates[i].year , month:this.dates[i].month , 
+      day:this.dates[i].day, hour:this.times[i].hour, minute: this.times[i].minute, price:0 }
+      this.ApiService.addData(obj,"sessions").subscribe(data => { console.log("added")})
+    }
   }
 
   /*
