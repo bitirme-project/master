@@ -9,3 +9,23 @@
     margin: 20px;
 }
 
+.container-form{
+    background-color: #f8f9fa!important;
+    margin-top: 5px;
+    border-radius: 0.5rem;
+    padding: 15px;
+    margin-top: 50px;
+}
+
+.row{
+    height: 85px;
+}
+
+.header{
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.btn{
+    min-width: 100px;
+}

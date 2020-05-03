@@ -1,143 +1,136 @@
 <app-navbar></app-navbar>
+<div style="min-height: 100vh;">
+    <div class="container container-table">
+        <input class="form-control searchText" placeholder="Arama" [(ngModel)]="searchText">
+        <table id="example" class="table table-striped ">
+            <thead class="table-success">
+                <tr>
+                    <th scope="col">Boy</th>
+                    <th scope="col">Kilo</th>
+                    <th scope="col" style="width: 215px !important;">Meslek</th>
+                    <th scope="col">Yaş</th>
+                    <th scope="col">Cinsiyet</th>
+                    <th scope="col">Patient ID</th>
+                    <th scope="col" style="width: 1px !important;"></th>
+                    <th scope="col" style="width: 1px !important;"></th>
+                    <th scope="col" style="width: 1px !important;"></th>
+                </tr>
+            </thead>
+            <tbody *ngIf="searchText != '' ">
+                <tr *ngFor="let item of patients | filter : searchText : false">
+                    <td>{{item.size}}</td>
+                    <td>{{item.weight}}</td>
+                    <td>{{item.job | lowercase }}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.gender | lowercase }}</td>
+                    <td>{{item.patientid}}</td>
+                    <td><button class="btn btn-success" routerLink="/patientupdate/{{item.id}}">Düzenle</button></td>
+                    <td><button class="btn btn-success" routerLink="/sessionadd/{{item.id}}">Seans Ekle</button></td>
+                    <td><button class="btn btn-success" (click)="MachineLearning(item)"> ML </button></td>
+                </tr>
+            </tbody>
+            <tbody *ngIf="searchText == ''">
+                <tr *ngFor="let item of patients | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
+                    <td>{{item.size}}</td>
+                    <td>{{item.weight}}</td>
+                    <td>{{item.job | lowercase }}</td>
+                    <td>{{item.age}}</td>
+                    <td>{{item.gender | lowercase }}</td>
+                    <td>{{item.patientid}}</td>
+                    <td><button class="btn btn-success" routerLink="/patientupdate/{{item.id}}">Düzenle</button></td>
+                    <td><button class="btn btn-success" routerLink="/sessionadd/{{item.id}}">Seans Ekle</button></td>
+                    <td><button class="btn btn-success" (click)="MachineLearning(item)" data-toggle="modal"
+                            data-target="#MLModal"> ML </button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="container">
+        <div class="data-table row" *ngIf="searchText==''">
 
-<div class="container container-table">
-    <input class="form-control" placeholder="Arama" [(ngModel)]="searchText">
-    <table id="example" class="table table-striped">
-        <thead class="table-success">
-            <tr>
-                <th scope="col">Ad</th>
-                <th scope="col">Soyad</th>
-                <th scope="col">Boy</th>
-                <th scope="col">Kilo</th>
-                <th scope="col">TC</th>
-                <th scope="col">İş</th>
-                <th scope="col">Yaş</th>
-                <th scope="col">Cinsiyet</th>
-                <th scope="col">Telefon</th>
-                <th scope="col">patientid</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody *ngIf="searchText != '' ">
-            <tr *ngFor="let item of patients | filter : searchText : false">
-                <td>{{item.firstName}}</td>
-                <td>{{item.lastName}}</td>
-                <td>{{item.size}}</td>
-                <td>{{item.weight}}</td>
-                <td>{{item.tc}}</td>
-                <td>{{item.job}}</td>
-                <td>{{item.age}}</td>
-                <td>{{item.gender}}</td>
-                <td>{{item.phone}}</td>
-                <td>{{item.patientid}}</td>
-                <td><button class="btn btn-primary" routerLink="/patientupdate/{{item.id}}">Düzenle</button></td>
-                <td><button class="btn btn-success" routerLink="/sessionadd/{{item.id}}">Seans Ekle</button></td>
-                <td><button class="btn btn-success" (click)="MachineLearning(item)"> ML </button></td>
-            </tr>
-        </tbody>
-        <tbody *ngIf="searchText == ''">
-            <tr *ngFor="let item of patients | slice: (page-1) * pageSize : (page-1) * pageSize + pageSize ">
-                <td>{{item.firstName}}</td>
-                <td> {{item.lastName}}</td>
-                <td>{{item.size}}</td>
-                <td>{{item.weight}}</td>
-                <td>{{item.tc}}</td>
-                <td>{{item.job}}</td>
-                <td>{{item.age}}</td>
-                <td>{{item.gender}}</td>
-                <td>{{item.phone}}</td>
-                <td>{{item.patientid}}</td>
-                <td><button class="btn btn-primary" routerLink="/patientupdate/{{item.id}}">Düzenle</button></td>
-                <td><button class="btn btn-success" routerLink="/sessionadd/{{item.id}}">Seans Ekle</button></td>
-                <td><button class="btn btn-success" (click)="MachineLearning(item)" data-toggle="modal"
-                        data-target="#MLModal"> ML </button></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-<div class="container">
-    <div class="data-table row" *ngIf="searchText==''">
-
-        <div class="page paginator">
-            <ngb-pagination id="pagination" [(page)]="page" [pageSize]="pageSize" [collectionSize]="patients.length">
-            </ngb-pagination>
-        </div>
-        <div class="page">
-            <select class="custom-select paging" [(ngModel)]="pageSize">
-                <option selected>10</option>
-                <option>20</option>
-                <option>50</option>
-            </select>
-            <button class="btn btn-success" (click)="Test()" data-toggle="modal" data-target="#MLModal">
-                Test </button>
+            <div class="page paginator">
+                <ngb-pagination id="pagination" [(page)]="page" [pageSize]="pageSize"
+                    [collectionSize]="patients.length">
+                </ngb-pagination>
+            </div>
+            <div class="page" style="display: flex; margin-right: 15px;">
+                <label style="margin-top: 7px; width: 95px;">Sayfa Başına</label>
+                <select class="custom-select paging" style="width: 60px;" [(ngModel)]="pageSize">
+                    <option selected>10</option>
+                    <option>15</option>
+                    <option>30</option>
+                    <option>50</option>
+                </select>
+                <button hidden class="btn btn-success" (click)="Test()" data-toggle="modal" data-target="#MLModal">
+                    Test </button>
+            </div>
         </div>
     </div>
-</div>
-<div class="modal fade" id="MLModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Tahminleme</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <div class="spinner-border text-success" role="status">
-                    <span class="sr-only">Loading...</span>
+    <div class="modal fade" id="MLModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Tahminleme</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+                <div class="modal-body">
+                    <div class="spinner-border text-success" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
 
-                <div *ngIf="loading">Yükleniyor Lütfen Bekleyin</div>
-                <div style="border-bottom: 1px solid lightgray; height: 40px;">
-                    {{patient.patientid}}
-                    Tahminlenen seans sayisi : {{MLData.seans_sayisi}}
-                </div>
-                <div class="suggest-container" *ngFor="let item of MLData.tedavi ; let index = index" style="margin-left: 10px;
+                    <div *ngIf="loading">Yükleniyor Lütfen Bekleyin</div>
+                    <div style="border-bottom: 1px solid lightgray; height: 40px;">
+                        {{patient.patientid}}
+                        Tahminlenen seans sayisi : {{MLData.seans_sayisi}}
+                    </div>
+                    <div class="suggest-container" *ngFor="let item of MLData.tedavi ; let index = index" style="margin-left: 10px;
                  margin-right: 10px;">
-                    <div class="row" style="border-bottom: 1px solid lightgray;">
-                        <div>
-                            <span *ngIf="item!='yok'"><label>{{index+1}}.Seans için tahminimiz</label></span>
-                            <br>
+                        <div class="row" style="border-bottom: 1px solid lightgray;">
                             <div>
-                                <select class="custom-select" [(ngModel)]="selected[index]"
-                                    (change)="onSelect($event.target.value,index)">
-                                    <option *ngFor="let treat of treatments ; let trid" [value]="treat.id">
-                                        {{treat.name}} -
-                                        {{ treat.treatment }}</option>
-                                </select>
+                                <span *ngIf="item!='yok'"><label>{{index+1}}.Seans için tahminimiz</label></span>
+                                <br>
+                                <div>
+                                    <select class="custom-select" [(ngModel)]="selected[index]"
+                                        (change)="onSelect($event.target.value,index)">
+                                        <option *ngFor="let treat of treatments ; let trid" [value]="treat.id">
+                                            {{treat.name}} -
+                                            {{ treat.treatment }}</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div style="margin-left: 10px;">
-                            <label>Tarih</label>
-                            <div class="form-group row">
-                                <div class="col-12">
-                                    <div class="input-group">
-                                        <input class="form-control calendars" size="15" placeholder="YY-MM-DD" name="dp"
-                                            [(ngModel)]="dates[index]" ngbDatepicker #st="ngbDatepicker">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-secondary calendar" (click)="st.toggle()"
-                                                type="button">
-                                                <i class="far fa-calendar-alt"></i> </button>
+                            <div style="margin-left: 10px;">
+                                <label>Tarih</label>
+                                <div class="form-group row">
+                                    <div class="col-12">
+                                        <div class="input-group">
+                                            <input class="form-control calendars" size="15" placeholder="YY-MM-DD"
+                                                name="dp" [(ngModel)]="dates[index]" ngbDatepicker #st="ngbDatepicker">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-secondary calendar" (click)="st.toggle()"
+                                                    type="button">
+                                                    <i class="far fa-calendar-alt"></i> </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="deneme" style="margin-left: 10px;">
-                            <label>Saat</label>
-                            <br>
-                            <div>
-                                <ngb-timepicker [(ngModel)]="times[index]"></ngb-timepicker>
+                            <div class="deneme" style="margin-left: 10px;">
+                                <label>Saat</label>
+                                <br>
+                                <div>
+                                    <ngb-timepicker [(ngModel)]="times[index]"></ngb-timepicker>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
-                <button type="button" class="btn btn-primary" (click)="add()">Kaydet</button>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+                    <button type="button" class="btn btn-primary" (click)="add()">Kaydet</button>
+                </div>
             </div>
         </div>
     </div>

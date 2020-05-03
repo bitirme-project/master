@@ -257,10 +257,11 @@ app.post('/patient', function (request, response) {
 
 app.post('/allergy', function (request, response) {
   name = request.body.name
+  descr = ""
   var value = [
-    [name]
+    [name,descr]
   ]
-  var sql = "INSERT INTO allergy (name) VALUES ?"
+  var sql = "INSERT INTO allergy (name,descr) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
     if (!error) {
       var obj = { id: fields.insertId, name: request.body.name }
@@ -274,10 +275,11 @@ app.post('/allergy', function (request, response) {
 
 app.post('/medicines', function (request, response) {
   name = request.body.name
+  descr = ""
   var value = [
-    [name]
+    [name,descr]
   ]
-  var sql = "INSERT INTO Medicines (name) VALUES ?"
+  var sql = "INSERT INTO Medicines (name,descr) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
     if (!error) {
       var obj = { id: fields.insertId, name: request.body.name }
@@ -291,10 +293,11 @@ app.post('/medicines', function (request, response) {
 
 app.post('/diseases', function (request, response) {
   name = request.body.name
+  descr = ""
   var value = [
-    [name]
+    [name,descr]
   ]
-  var sql = "INSERT INTO diseases (name) VALUES ?"
+  var sql = "INSERT INTO diseases (name,descr) VALUES ?"
   connection.query(sql, [value], (error, fields) => {
     if (!error) {
       var obj = { id: fields.insertId, name: request.body.name }

@@ -31,9 +31,9 @@ export class PatientAddComponent implements OnInit {
 
     this.settings = {
       singleSelection: false,
-      text: "Kullandığı İlaçları Seçiniz",
-      selectAllText: 'Hepsini Seçiniz',
-      unSelectAllText: 'Seçimleri Temizle',
+      text: "Hastanın kullandığı ilaçları seçiniz",
+      selectAllText: 'Hepsini Seç',
+      unSelectAllText: 'Seçimleri temizle',
       enableSearchFilter: true,
       addNewItemOnFilter: true,
       primaryKey: 'id',
@@ -42,9 +42,9 @@ export class PatientAddComponent implements OnInit {
 
     this.settings1 = {
       singleSelection: false,
-      text: "Alerjileri Seçiniz",
-      selectAllText: 'Hepsini Seçiniz',
-      unSelectAllText: 'Seçimleri Temizle',
+      text: "Hastanın alerjilerini Seçiniz",
+      selectAllText: 'Hepsini Seç',
+      unSelectAllText: 'Seçimleri temizle',
       enableSearchFilter: true,
       addNewItemOnFilter: true,
       primaryKey: 'id',
@@ -53,9 +53,9 @@ export class PatientAddComponent implements OnInit {
 
     this.settings2 = {
       singleSelection: false,
-      text: "Geçirmiş Olduğu Hastalıkları Giriniz",
-      selectAllText: 'Hepsini Seçiniz',
-      unSelectAllText: 'Seçimleri Temizle',
+      text: "Hastanın geçirmiş olduğu hastalıkları seçiniz",
+      selectAllText: 'Hepsini Seç',
+      unSelectAllText: 'Seçimleri temizle',
       enableSearchFilter: true,
       addNewItemOnFilter: true,
       primaryKey: 'id',

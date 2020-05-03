@@ -35,3 +35,11 @@
 .btn-link{
     display: none;
 }
+
+.table-striped{
+    margin-top: 10px;
+}
+
+.searchText{
+    margin-top: 10px;
+}

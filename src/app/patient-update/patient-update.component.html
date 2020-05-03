@@ -1,190 +1,192 @@
 <app-navbar></app-navbar>
-<div class="container">
-        <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4">
-                        <h2>Hasta Ekleme Formu</h2>
+<div style="min-height: 100vh;">
+        <div class="container container-form">
+                <div class="row">
+                        <div class="header">
+                                <h2>Hasta Güncelleme Formu</h2>
+                        </div>
                 </div>
-                <div class="col-4"></div>
+                <div class="row">
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="firstName">Ad</label>
+                                        <input type="text" name="firstname" required class="form-control"
+                                                [(ngModel)]="patient.firstName">
+                                </div>
+                        </div>
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="lastName">Soyad</label>
+                                        <input type="text" name="lastname" required class="form-control"
+                                                [(ngModel)]="patient.lastName">
+                                </div>
+                        </div>
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Doğum Tarihi</label>
+                                        <input type="date" name="birthdate" required class="form-control"
+                                                [(ngModel)]="patient.birthdate">
+                                </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-4">
+                                <div class="tc">
+                                        <label for="exampleInputEmail1">T.C</label>
+                                        <input type="text" name="tc" required class="form-control"
+                                                [(ngModel)]="patient.tc">
+                                </div>
+                        </div>
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Meslek</label>
+                                        <input type="text" name="job" required class="form-control"
+                                                [(ngModel)]="patient.job">
+                                </div>
+                        </div>
+                        <div class=" col-4">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Cinsiyet</label>
+                                        <select name="gender" [(ngModel)]="patient.gender" class="form-control"
+                                                id="exampleFormControlSelect1">
+                                                <option>Erkek</option>
+                                                <option>Kadın</option>
+                                        </select>
+                                </div>
+                        </div>
+                </div>
+
+                <div class="row">
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Telefon Numarası</label>
+                                        <input type="text" name="phone" required class="form-control"
+                                                [(ngModel)]="patient.phone">
+                                </div>
+                        </div>
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Mail Adresi</label>
+                                        <input type="email" name="mail" required class="form-control"
+                                                [(ngModel)]="patient.mail">
+                                </div>
+                        </div>
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Adres</label>
+                                        <textarea name="address" required class="form-control" rows="1"
+                                                [(ngModel)]="patient.address"></textarea>
+                                        <br> </div>
+                        </div>
+                </div>
+
+                <div class="row">
+
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="size">Boy</label>
+                                        <input type="text" name="size" required class="form-control"
+                                                [(ngModel)]="patient.size">
+                                </div>
+                        </div>
+
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Kilo</label>
+                                        <input type="text" name="weight" required class="form-control"
+                                                [(ngModel)]="patient.weight">
+                                </div>
+                        </div>
+                        <div class="col-4" hidden>
+
+                                <div class="form-group">
+                                        <label for="exampleFormControlFile1">Gerekli Fotoğrafları Ekle</label> <br>
+                                        <input type="file" name="file" [(ngModel)]="patient.file"
+                                                class="form-control-file" id="exampleFormControlFile1">
+                                </div>
+
+                        </div>
+                        <div class="col-4">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Yaş</label>
+                                        <textarea name="patientid" required class="form-control" rows="1"
+                                                placeholder="İd Giriniz" [(ngModel)]="patient.age"></textarea>
+                                        <br> </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-6">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Tanı</label>
+                                        <input type="email" name="mail" required class="form-control"
+                                                placeholder="Tanı Giriniz" [(ngModel)]="patient.diagnosis">
+                                </div>
+                        </div>
+                        <div class="col-6">
+                                <div class="form-group">
+                                        <label for="exampleInputEmail1">Patient id</label>
+                                        <textarea name="patientid" required class="form-control" rows="1"
+                                                placeholder="İd Giriniz" [(ngModel)]="patient.patientid"></textarea>
+                                        <br> </div>
+                        </div>
+
+                </div>
+
+
+                <div class="row">
+                        <div class="col-6">
+                                <div class="form-group">
+                                        <label>Kullandığı İlaçlar</label>
+                                        <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems"
+                                                [settings]="settings" (onSelect)="onItemSelect($event)"
+                                                (onDeSelect)="OnItemDeSelect($event)"
+                                                (onSelectAll)="onSelectAll($event)"
+                                                (onDeSelectAll)="onDeSelectAll($event)"
+                                                (onAddFilterNewItem)="onAddItem($event)">
+                                        </angular2-multiselect>
+                                </div>
+                        </div>
+                        <div class="col-6">
+                                <div class="form-group">
+                                        <label>Alerjiler:</label>
+                                        <angular2-multiselect [data]="itemList1" [(ngModel)]="selectedItems1"
+                                                [settings]="settings1" (onSelect)="onItemSelect($event)"
+                                                (onDeSelect)="OnItemDeSelect($event)"
+                                                (onSelectAll)="onSelectAll($event)"
+                                                (onDeSelectAll)="onDeSelectAll($event)"
+                                                (onAddFilterNewItem)="onAddItem1($event)">
+                                        </angular2-multiselect>
+                                </div>
+                        </div>
+                </div>
+                <div class="row">
+                        <div class="col-6">
+                                <div class="form-group">
+                                        <label>Geçmiş Hastalıklar</label>
+                                        <angular2-multiselect [data]="itemList2" [(ngModel)]="selectedItems2"
+                                                [settings]="settings2" (onSelect)="onItemSelect($event)"
+                                                (onDeSelect)="OnItemDeSelect($event)"
+                                                (onSelectAll)="onSelectAll($event)"
+                                                (onDeSelectAll)="onDeSelectAll($event)"
+                                                (onAddFilterNewItem)="onAddItem($event)">
+                                        </angular2-multiselect>
+                                </div>
+                        </div>
+                        <div class="col-6" style="height: 80px;">
+                                <label> Hastanın Şikayetini Giriniz</label> <textarea name="sikayet" required
+                                        class="form-control" rows="1" style="height: 80px;"
+                                        [(ngModel)]="patient.Complaint"></textarea>
+                                <br>
+                        </div>
+                </div>
+
+
+
+                <div style="height: 35px; margin-top: 40px;">
+                        <button class="btn btn-success float-right"
+                                [swal]="['Güncellendi!', 'Hasta bilgileri başarı ile güncellendi']"
+                                (click)="update()">Güncelle</button>
+                </div>
         </div>
-        <div class="row">
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="firstName">İsim</label>
-                                <input type="text" name="firstname" required class="form-control"
-                                        placeholder="İsmini Giriniz" [(ngModel)]="patient.firstName">
-                        </div>
-                </div>
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="lastName">Soyadı</label>
-                                <input type="text" name="lastname" required class="form-control"
-                                        placeholder="Soyadını Giriniz" [(ngModel)]="patient.lastName">
-                        </div>
-                </div>
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Doğum Tarihi</label>
-                                <input type="date" name="birthdate" required class="form-control"
-                                        placeholder="Doğum Tarihini Giriniz" [(ngModel)]="patient.birthdate">
-                        </div>
-                </div>
-        </div>
-        <div class="row">
-                <div class="col-4">
-                        <div class="tc">
-                                <label for="exampleInputEmail1">T.C</label>
-                                <input type="text" name="tc" required class="form-control" placeholder=" T.C Giriniz"
-                                        [(ngModel)]="patient.tc">
-                        </div>
-                </div>
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Meslek</label>
-                                <input type="text" name="job" required class="form-control"
-                                        placeholder="Mesleğini Giriniz" [(ngModel)]="patient.job">
-                        </div>
-                </div>
-                <div class=" col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Cinsiyet</label>
-                                <select name="gender" placeholder="Cinsiyeti Giriniz" [(ngModel)]="patient.gender"
-                                        class="form-control" id="exampleFormControlSelect1">
-                                        <option>Erkek</option>
-                                        <option>Kadın</option>
-                                </select>
-                        </div>
-                </div>
-        </div>
-
-        <div class="row">
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Telefon Numarası</label>
-                                <input type="text" name="phone" required class="form-control"
-                                        placeholder="Telefon Numarasını Giriniz" [(ngModel)]="patient.phone">
-                        </div>
-                </div>
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Mail Adresi</label>
-                                <input type="email" name="mail" required class="form-control"
-                                        placeholder="Mail Adresini Giriniz" [(ngModel)]="patient.mail">
-                        </div>
-                </div>
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Adres</label>
-                                <textarea name="address" required class="form-control" rows="1"
-                                        placeholder="Adres Giriniz" [(ngModel)]="patient.address"></textarea>
-                                <br> </div>
-                </div>
-        </div>
-
-        <div class="row">
-
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="size">Boy</label>
-                                <input type="text" name="size" required class="form-control"
-                                        placeholder="Boyunu Giriniz" [(ngModel)]="patient.size">
-                        </div>
-                </div>
-
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Kilo</label>
-                                <input type="text" name="weight" required class="form-control"
-                                        placeholder="Kilo Giriniz" [(ngModel)]="patient.weight">
-                        </div>
-                </div>
-                <div class="col-4">
-
-                        <div class="form-group">
-                                <label for="exampleFormControlFile1">Gerekli Fotoğrafları Ekle</label> <br>
-                                <input type="file" name="file" [(ngModel)]="patient.file" class="form-control-file"
-                                        id="exampleFormControlFile1">
-                        </div>
-
-                </div>
-        </div>
-
-
-        <div class="row">
-                <div class="col-6">
-                        <div class="form-group">
-                                <label>Kullandığı İlaçlar</label>
-                                <angular2-multiselect [data]="itemList" [(ngModel)]="selectedItems"
-                                        [settings]="settings" (onSelect)="onItemSelect($event)"
-                                        (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
-                                        (onDeSelectAll)="onDeSelectAll($event)"
-                                        (onAddFilterNewItem)="onAddItem($event)">
-                                </angular2-multiselect>
-                        </div>
-                </div>
-                <div class="col-6">
-                        <div class="form-group">
-                                <label>Alerjiler:</label>
-                                <angular2-multiselect [data]="itemList1" [(ngModel)]="selectedItems1"
-                                        [settings]="settings1" (onSelect)="onItemSelect($event)"
-                                        (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
-                                        (onDeSelectAll)="onDeSelectAll($event)"
-                                        (onAddFilterNewItem)="onAddItem1($event)">
-                                </angular2-multiselect>
-                        </div>
-                </div>
-        </div>
-        <div class="row">
-                <div class="col-6">
-                        <div class="form-group">
-                                <label>Geçmiş Hastalıklar</label>
-                                <angular2-multiselect [data]="itemList2" [(ngModel)]="selectedItems2"
-                                        [settings]="settings2" (onSelect)="onItemSelect($event)"
-                                        (onDeSelect)="OnItemDeSelect($event)" (onSelectAll)="onSelectAll($event)"
-                                        (onDeSelectAll)="onDeSelectAll($event)"
-                                        (onAddFilterNewItem)="onAddItem($event)">
-                                </angular2-multiselect>
-                        </div>
-                </div>
-                <div class="col-6">
-                        <label> Hastanın Şikayetini Giriniz</label> <textarea name="sikayet" required
-                                class="form-control" rows="1" placeholder="Şikayet Giriniz"
-                                [(ngModel)]="patient.Complaint"></textarea>
-                        <br>
-                </div>
-        </div>
-
-        <div class="row">
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Tanı</label>
-                                <input type="email" name="mail" required class="form-control"
-                                        placeholder="Tanı Giriniz" [(ngModel)]="patient.diagnosis">
-                        </div>
-                </div>
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Patient id (Kağıtta yazan id)</label>
-                                <textarea name="patientid" required class="form-control" rows="1"
-                                        placeholder="İd Giriniz" [(ngModel)]="patient.patientid"></textarea>
-                                <br> </div>
-                </div>
-                <div class="col-4">
-                        <div class="form-group">
-                                <label for="exampleInputEmail1">Yaş (Kağıtta yazan yaş)</label>
-                                <textarea name="patientid" required class="form-control" rows="1"
-                                        placeholder="İd Giriniz" [(ngModel)]="patient.age"></textarea>
-                                <br> </div>
-                </div>
-        </div>
-
-        <div class="row">
-                <div class="col-3"></div>
-                <div class="col-3"></div>
-                <div class="col-3"></div>
-                <div class="col-3"><button class="btn btn-success" [swal]="['Güncellendi!', 'başarılı']" (click)="update()">Güncelle</button></div>
-        </div>
-
-
-
 </div>
+<app-footer></app-footer>
