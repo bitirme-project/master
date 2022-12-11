@@ -29,7 +29,7 @@
     "canvasjs": "^1.8.3",
     "chart.js": "^2.9.3",
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "fullcalendar": "^3.10.1",
     "jquery": "^3.4.1",
